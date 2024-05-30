@@ -30,7 +30,7 @@
 (function(exports) {
 	exports.googleCitation = function (repo, callback) {
 		var xmlhttp = new XMLHttpRequest(),
-			url = ["http://cse.bth.se/~fer/googlescholar-api/googlescholar.php?user=Uf9GqRsAAAAJ"],
+			url = ["http://cse.bth.se/~fer/googlescholar-api/googlescholar.php?user=SWU7N_sAAAAJ"],
 			useCallback = (typeof(callback) == "function");
 
 		//count the stars
@@ -44,7 +44,7 @@
             response_pub = response.publications
 
 			for (var i in response_pub) {
-                if (response_pub[i].title=="Meta-Transfer Learning for Few-Shot learning")
+                if (response_pub[i].title=="PointMamba: A Simple State Space Model for Point Cloud Analysis")
 				stars += parseInt(response_pub[i].citations);
 			}
 
