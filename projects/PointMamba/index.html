@@ -6,7 +6,10 @@
         content="PointMamba">
   <meta name="keywords" content="Point Cloud Analysis">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PointMamba: A Simple State Space Model for Point Cloud Analysis</title>
+  <title>PointMamba</title>
+  <link rel="icon" media="(prefers-color-scheme:dark)" href="./static/images/logo.png" type="image/png" />
+  <link rel="icon" media="(prefers-color-scheme:light)" href="./static/images/logo.png" type="image/png" />
+
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -18,13 +21,16 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-<!--  <link rel="icon" href="./static/images/favicon.svg">-->
+
+
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+
 </head>
 <body>
 
@@ -45,10 +51,6 @@
       </span>
       </a >
       <div class="navbar-item has-dropdown is-hoverable">
-        <!-- <a class="navbar-link">
-          More Researches
-        </a > -->
-        <!-- <div class="navbar-dropdown"> -->
         <a class="navbar-navbar">
           <a class="navbar-item" href="https://lmd0311.github.io" style="color: #9e1f14; font-weight: bold;">
             More Researches
@@ -64,6 +66,25 @@
   </div>
 </nav>
 
+
+<script src="../../assets/js/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+    backgroundColor: '#fff',
+    innerHTML: 'Back to Top',
+    textColor: '#333'
+  })
+</script>
+<style>
+    #back-to-top {
+      border: 1px solid #ccc;
+      border-radius: 0;
+      font-size: 15px;
+      width: 100px;
+      text-align: center;
+      line-height: 30px;
+      height: 30px;
+    }
+</style>
 
 <section class="hero">
   <div class="hero-body">
@@ -103,7 +124,6 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
               <span class="link-block">
                 <a href="https://arxiv.org/pdf/2402.10739"
                    class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener noreferrer">
@@ -139,13 +159,12 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Transformers have become one of the foundational architectures in point cloud analysis tasks due to their excellent global modeling ability. However, the attention mechanism has quadratic complexity, making the design of a linear complexity method with global modeling appealing. In this paper, we propose PointMamba, transferring the success of Mamba, a recent representative state space model (SSM), from NLP to point cloud analysis tasks. Unlike traditional Transformers, PointMamba employs a linear complexity algorithm, presenting global modeling capacity while significantly reducing computational costs. Specifically, our method leverages space-filling curves for effective point tokenization and adopts an extremely simple, non-hierarchical Mamba encoder as the backbone. Comprehensive evaluations demonstrate that PointMamba achieves superior performance across multiple datasets while significantly reducing GPU memory usage and FLOPs. This work underscores the potential of SSMs in 3D vision-related tasks and presents a simple yet effective Mamba-based baseline for future research.  The code is available at https://github.com/LMD0311/PointMamba.          </p>
+            Transformers have become one of the foundational architectures in point cloud analysis tasks due to their excellent global modeling ability. However, the attention mechanism has quadratic complexity, making the design of a linear complexity method with global modeling appealing. In this paper, we propose PointMamba, transferring the success of Mamba, a recent representative state space model (SSM), from NLP to point cloud analysis tasks. Unlike traditional Transformers, PointMamba employs a linear complexity algorithm, presenting global modeling capacity while significantly reducing computational costs. Specifically, our method leverages space-filling curves for effective point tokenization and adopts an extremely simple, non-hierarchical Mamba encoder as the backbone. Comprehensive evaluations demonstrate that PointMamba achieves superior performance across multiple datasets while significantly reducing GPU memory usage and FLOPs. This work underscores the potential of SSMs in 3D vision-related tasks and presents a simple yet effective Mamba-based baseline for future research.          </p>
         </div>
       </div>
     </div>
@@ -158,7 +177,6 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3">Comprehensive comparisons</h2>
       <div class="item">
-        <!-- Your image here -->
         <img src="static/images/intro.png" alt="MY ALT TEXT"/>
        </h2>
      </div>
@@ -200,9 +218,7 @@
             </div> 
 
         <br/>
-        <!--/ Interpolating. -->
 
-        <!-- Re-rendering. -->
         <h3 class="title is-4">Part Segmentation on ShapeNetPart</h3>
         <div class="content has-text-justified">
           <p>
@@ -223,12 +239,10 @@
       
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Qualitative Results. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Qualitative Results</h2>
 
-        <!-- Interpolating. -->
         <div class="content has-text-justified">
           <p>
           </p>
@@ -239,10 +253,8 @@
                  alt="MVTec-AD and VisA dataset."/>
         </div>
         <br/>
-        <!--/ Interpolating. -->
       </div>
     </div>
-    <!--/ Animation. -->
   </div>
 </section>
 
@@ -266,16 +278,14 @@
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-          <p>
+          <small><p>
             This website is licensed under a <a rel="license"
                                                 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            We borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> for our website.
-            We sincerely appreciate Nerfies authors for their awesome templates.
-          </p>
+          </p></small>
+          <small><p>
+            We sincerely appreciate Nerfies authors <a href="https://github.com/nerfies/nerfies.github.io"> for their awesome templates.
+          </p></small>
         </div>
       </div>
     </div>
