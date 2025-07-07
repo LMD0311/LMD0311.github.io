@@ -183,3 +183,163 @@ nav ul {
   overflow: hidden;
   overflow-y: scroll;
 }
+
+/* Theme Switcher Styles */
+.theme-switcher-container {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.theme-switcher-btn {
+  background-color: transparent;
+  border: 2px solid #043361;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #043361;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-switcher-btn:hover {
+  background-color: #043361;
+  color: white;
+  transform: scale(1.1);
+}
+
+.theme-switcher-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(4, 51, 97, 0.3);
+}
+
+.theme-icon {
+  transition: transform 0.3s ease;
+}
+
+/* Dark mode styles for theme switcher */
+@media (prefers-color-scheme: dark) {
+  .theme-switcher-btn {
+    border-color: #3eb7f0;
+    color: #3eb7f0;
+  }
+  
+  .theme-switcher-btn:hover {
+    background-color: #3eb7f0;
+    color: #20212b;
+  }
+  
+  .theme-switcher-btn:focus {
+    box-shadow: 0 0 0 3px rgba(62, 183, 240, 0.3);
+  }
+}
+
+/* Manual theme override classes */
+.manual-light {
+  background-color: #fff !important;
+  color: #595959 !important;
+}
+
+.manual-light autocolor {
+  color: #595959 !important;
+}
+
+.manual-light lightonly {
+  visibility: visible !important;
+}
+
+.manual-light darkonly {
+  visibility: hidden !important;
+}
+
+.manual-light papertitle {
+  color: #000 !important;
+}
+
+.manual-light h1, .manual-light h2, .manual-light h3, .manual-light h4, .manual-light h5, .manual-light h6 {
+  color: #043361 !important;
+}
+
+.manual-light a {
+  color: #39c !important;
+}
+
+.manual-light .social-icons a {
+  color: #043361 !important;
+}
+
+.manual-light .social-icons a:hover {
+  background-color: white !important;
+  color: black !important;
+}
+
+.manual-light .theme-switcher-btn {
+  border-color: #043361 !important;
+  color: #043361 !important;
+}
+
+.manual-light .theme-switcher-btn:hover {
+  background-color: #043361 !important;
+  color: white !important;
+}
+
+.manual-light .theme-switcher-btn:focus {
+  box-shadow: 0 0 0 3px rgba(4, 51, 97, 0.3) !important;
+}
+
+.manual-dark {
+  background-color: #20212b !important;
+  color: #dadbdf !important;
+}
+
+.manual-dark autocolor {
+  color: #dadbdf !important;
+}
+
+.manual-dark lightonly {
+  visibility: hidden !important;
+}
+
+.manual-dark darkonly {
+  visibility: visible !important;
+}
+
+.manual-dark papertitle {
+  color: #eeeff0 !important;
+}
+
+.manual-dark h1, .manual-dark h2, .manual-dark h3, .manual-dark h4, .manual-dark h5, .manual-dark h6 {
+  color: #3eb7f0 !important;
+}
+
+.manual-dark a {
+  color: #3eb7f0 !important;
+}
+
+.manual-dark .social-icons a {
+  color: #3eb7f0 !important;
+}
+
+.manual-dark .social-icons a:hover {
+  background-color: #20212b !important;
+  color: black !important;
+}
+
+.manual-dark .theme-switcher-btn {
+  border-color: #3eb7f0 !important;
+  color: #3eb7f0 !important;
+}
+
+.manual-dark .theme-switcher-btn:hover {
+  background-color: #3eb7f0 !important;
+  color: #20212b !important;
+}
+
+.manual-dark .theme-switcher-btn:focus {
+  box-shadow: 0 0 0 3px rgba(62, 183, 240, 0.3) !important;
+}
