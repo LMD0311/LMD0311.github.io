@@ -302,7 +302,16 @@ a:hover { color: #084e86; text-decoration: underline; }
 
 /* Site-wide: ensure GitHub star iframes have enough width to show the count */
 iframe[src*="ghbtns.com/github-btn.html"] {
-  width: 110px !important;
+  width: 100px !important;
+}
+
+/* Keep GitHub star button from stretching News list line height */
+h2#news + ul iframe[src*="ghbtns.com/github-btn.html"] {
+  position: static !important;
+  top: 0 !important;
+  height: 18px; /* slightly smaller to fit text line-height */
+  vertical-align: middle;
+  margin: 0 4px 0 4px !important;
 }
 
 /* Header avatar slightly larger on desktop */
