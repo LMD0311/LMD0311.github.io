@@ -239,12 +239,15 @@ a:hover { color: #084e86; text-decoration: underline; }
 .publications ol.bibliography > li { list-style: none; margin: 0 0 14px; }
 
 .pub-row {
-  align-items: stretch;
+  display: flex;              /* ensure horizontal layout on desktop */
+  align-items: flex-start;
   gap: 14px;
   padding: 12px;
   border: 1px solid #ececec;
   border-radius: 10px;
   background: #ffffff;
+  position: relative;
+  overflow: hidden;           /* avoid children overflow on small screens */
 }
 
 .pub-row .abbr { position: relative; width: 36%; min-width: 160px; }
@@ -345,6 +348,19 @@ h2#news + ul iframe[src*="ghbtns.com/github-btn.html"] {
   }
 }
 
+/* ---- Override legacy publications.css sizing to avoid mobile overlap ---- */
+.pub-row .col-sm-3.abbr, .pub-row .col-sm-9 { box-sizing: border-box; }
+.pub-row .col-sm-9 { flex: 1 1 auto; min-width: 0; }
+.pub-row .col-sm-3.abbr { flex: 0 0 36%; }
+
+/* Neutralize fixed teaser width/height from publications.css */
+.pub-row .abbr .teaser { width: 100% !important; height: auto !important; margin: 0 !important; box-shadow: none !important; }
+
+/* Extra safety: on very narrow screens ensure image does not exceed a practical height */
+@media (max-width:640px){
+  .pub-row .abbr .teaser { max-height: 200px; object-fit: cover; }
+}
+
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
   a { color: #58b0f7; }
@@ -358,9 +374,30 @@ h2#news + ul iframe[src*="ghbtns.com/github-btn.html"] {
 }
 
 /* Mobile tweaks */
-@media print, screen and (max-width: 480px) {
-  .pub-row { padding: 10px; }
-  .pub-row .abbr { width: 100%; margin-bottom: 8px; }
+@media print, screen and (max-width: 640px) {
+  .pub-row { 
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 12px 12px 14px; 
+  }
+  .pub-row .col-sm-3.abbr, .pub-row .abbr { 
+    width: 100% !important; 
+    margin: 0 0 10px !important; 
+    padding: 0 !important;
+  }
+  .pub-row .col-sm-9 {width:100% !important; padding:0 !important; margin:2px 0 0 !important;}
+  .pub-row .abbr img.teaser { 
+    aspect-ratio: 16 / 9;     /* keep ratio */
+    width: 100% !important; 
+    height: auto !important;
+    margin:0 !important;
+  }
+  .pub-row .title { margin-top: 2px; }
+  .pub-row .title a {line-height:1.32 !important; display:inline-block;}
+  .pub-row .author {line-height:1.35 !important; word-break:break-word;}
+  .pub-row .links { margin-top: 8px; flex-wrap:wrap; }
+  .pub-summary { margin-top: 10px; }
 }
 
 /* Typography preference: headings use Times New Roman, body remains Arial */
