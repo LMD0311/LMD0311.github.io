@@ -8,9 +8,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-    content="The Minimal Light is a simple and elegant jekyll theme for academic personal homepage.">
+    content="Xin Zhou, Ph.D. student at HUST. Research in 3D vision, autonomous driving, and generative models.">
 
-  <meta name="keywords" content="minimal light">
+  <meta name="keywords" content="Xin Zhou, HUST, 3D vision, autonomous driving, generative models">
 
 
   <link rel="canonical" href="https://lmd0311.github.io/" />
@@ -25,10 +25,16 @@
   <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css
     integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin=anonymous>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+
 
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/publications.css">
   <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/hust-inf.css">
+  <link rel="stylesheet" href="./assets/css/theme.css">
 
   <!-- if you are using this template, please change the Baidu/Google Analytics ID below -->
   <script>
@@ -46,7 +52,8 @@
 
 </head>
 
-<body>
+<body class="material-home">
+  <a class="skip-link" href="#about-me">Skip to content</a>
   <lightonly>
     <div id="head1o2">
       <div id="mpiidotspacer"></div>
@@ -60,71 +67,60 @@
   <script src="./assets/js/vanilla-back-to-top.min.js"></script>
   <script>addBackToTop({
       backgroundColor: '#fff',
-      innerHTML: 'Back to Top',
+      innerHTML: '<i class="fas fa-arrow-up" aria-hidden="true"></i><span class="sr-only">Back to Top</span>',
       textColor: '#333'
     })
   </script>
-  <style>
-    #back-to-top {
-      border: 1px solid #ccc;
-      border-radius: 0;
-      font-size: 15px;
-      width: 100px;
-      text-align: center;
-      line-height: 30px;
-      height: 30px;
-    }
-  </style>
 
   <div class="wrapper">
     <header>
 
 
-      <!-- <a class="image avatar"><img src="./assets/img/me.jpg" alt="avatar" /></a> -->
-      <a class="image avatar"><img src="./assets/img/Head.png" alt="avatar" /></a>
+      <a class="image avatar"><img src="./assets/img/me.jpg" alt="avatar" /></a>
 
-      <h2><b>Xin Zhou</b></h2>
+      <h1>Xin Zhou</h1>
       <position style="font-size:1.0rem;">Second-Year Ph.D. Student</position>
       <br>
       <a href="https://www.hust.edu.cn/" rel="noopener">
         <autocolor>Huazhong University of Science & Technology (HUST) </autocolor>
       </a>
       <br>
-      <address> <i class="fas fa-map-marker-alt"></i> Wuhan, Hubei, China</address>
-      <email><i class="fas fa-envelope"></i> <a href="mailto: xzhou03@hust.edu.cn">
-          <autocolor>xzhou03@hust.edu.cn</autocolor>
-        </a></email>
-
       <br>
       <br>
       <div class="social-icons">
 
         <a style="margin: 0 2px 0 0" href="https://scholar.google.com/citations?user=SWU7N_sAAAAJ&hl=en" target="_blank"
-          rel="noopener noreferrer">
-          <i class="ai ai-google-scholar" style="font-size:1.2rem"></i>
+          rel="noopener noreferrer" aria-label="Google Scholar">
+          <i class="ai ai-google-scholar"></i>
         </a>
-        <a style="margin: 0 2px 0 0" href="https://github.com/LMD0311" target="_blank" rel="noopener noreferrer">
+        <a style="margin: 0 2px 0 0" href="https://github.com/LMD0311" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <i class="fab fa-github"></i>
         </a>
-        <a style="margin: 0 2px 0 0" href="assets/img/wechat.jpg" target="_blank" rel="noopener noreferrer">
+        <a style="margin: 0 2px 0 0" href="mailto:xzhou03@hust.edu.cn" aria-label="Email" title="xzhou03@hust.edu.cn">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a class="wechat-link" style="margin: 0 2px 0 0" href="assets/img/wechat.jpg" target="_blank"
+          rel="noopener noreferrer" aria-label="WeChat contact information">
           <i class="fab fa-weixin"></i>
+          <span class="wechat-tooltip">申请好友时请说明来意<br><em>Please introduce yourself when adding me</em><br>欢迎任何形式的学术交流<br><em>Academic discussion is always welcome</em></span>
         </a>
         <a style="margin: 0 2px 0 0" href="https://twitter.com/THELMDOFZHOUXIN" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" aria-label="Twitter">
           <i class="fab fa-twitter"></i>
         </a>
-        <a style="margin: 0 2px 0 0" href="https://www.zhihu.com/people/lmd-61-18" target="_blank"
-          rel="noopener noreferrer">
-          <i class='fab fa-zhihu'></i>
-        </a>
-
-
       </div>
       <!-- <iframe style="border: 0px #ffffff none;" name="gscitations" src="https://author.my.id/widget/citations.php?id=SWU7N_sAAAAJ:9yKSN-GCB0IC&lang=en" frameborder="0" marginwidth="0px" marginheight="0px" scrolling="no" width="100%" height="250px"></iframe> -->
 
 
       <br>
 
+      <nav class="profile-nav" aria-label="Page sections">
+        <a href="#about-me">About</a>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
+        <a href="#services">Service</a>
+      </nav>
     </header>
     <section>
 
@@ -134,18 +130,16 @@
         interests mainly lie in 3D vision, especially in 3D understanding and generative models.
       </p>
 
-      <h2 id="research-interests">Research Interests</h2>
-      <ul>
-        <li><b>3D Vision/Autonomous Driving/Embodied AI:</b> 3D perception, point cloud analysis, 3D generation</li>
-        <li><b>Generative Models:</b> world model for autonomous driving and general scenes</li>
-      </ul>
+      <p class="research-profile"><b>Research interests:</b> foundation models, vision-language-action (VLA) models,
+        world models, and world action models (WAM) for autonomous driving and embodied AI.</p>
 
-      <h2 id="news">News</h2>
+      <div class="section-heading"><h2 id="news">News</h2><span class="section-hint">Scroll for earlier updates</span></div>
+      <div class="news-scroll" role="region" aria-labelledby="news" tabindex="0">
       <ul>
         <li><strong>[Sep. 2026]</strong> Our work <a href="https://github.com/QwenLM/Qwen-Drive-1.0/tree/main"
             target="_blank" rel="noopener noreferrer"><b>Qwen-Drive-1.0</b></a>, a vision-language foundation model
-          for autonomous driving, is released. <a href="https://qwen.ai/blog?id=qwen-drive-1.0" target="_blank"
-            rel="noopener noreferrer">[Blog]</a></li>
+          for autonomous driving, is released.</li>
+        <li><strong>[Sep. 2026]</strong> <b>HERMES++</b> is accepted to <b>TPAMI</b>.</li>
         <li><strong>[Jul. 2026]</strong> Selected as an Outstanding Reviewer for <b>ECCV 2026</b>.</li>
         <li><strong>[Jun. 2026]</strong> One paper is accepted to <b>ECCV 2026</b>.</li>
         <li><strong>[May. 2026]</strong> Recognized as a Silver Reviewer for <b>ICML 2026</b>.</li>
@@ -161,7 +155,7 @@
         <li><strong>[Jun. 2025]</strong> <a href="https://github.com/LMD0311/HERMES" target="_blank"
             rel="noopener noreferrer">HERMES</a> is accepted to <b>ICCV 2025</b>.</li>
         <li><strong>[Apr. 2025]</strong> We win the <i style="color:#e74d3c; font-family: 'Times New Roman'">
-            <b>2-nd</b></i></strong> place in the SoccerNet Monocular Depth Estimation Challenges (CVPR 2025).</li>
+            <b>2-nd</b></i> place in the SoccerNet Monocular Depth Estimation Challenges (CVPR 2025).</li>
         <li><strong>[Feb. 2025]</strong> One paper is accepted to <b>CVPR 2025</b>.</li>
         <li><strong>[Sep. 2024]</strong> Two papers are accepted to <b>NeurIPS 2024</b>.</li>
         <li><strong>[Sep. 2024]</strong> We win the <strong> <i style="color:#e74d3c; font-family: 'Times New Roman'">
@@ -171,18 +165,18 @@
         <li><strong>[Jan. 2024]</strong> I will keep
           updating a collection of <a href="https://github.com/LMD0311/Awesome-World-Model" target="_blank"
             rel="noopener noreferrer">World Models</a>
-          <iframe src="https://ghbtns.com/github-btn.html?user=LMD0311&repo=Awesome-World-Model&type=star&count=true"
-            frameborder="0" scrolling="0" width="80" height="20" title="GitHub" width="100%;"
-            style="position: relative; top: 4px"></iframe>, check it out and give a star🌟!
+          <span class="news-star"><i class="fas fa-star" aria-hidden="true"></i><span class="star-count"
+              data-repo="LMD0311/Awesome-World-Model">2,254</span></span>
+          — check it out and give a star🌟!
         </li>
         <li><strong>[Aug. 2023]</strong> One paper is accepted to <b>PRCV 2023</b>.</li>
       </ul>
-
-      <h2 id="publications" style="margin: 2px 0px -15px;">Selected Publications (<a
+      </div>
+      <div class="section-heading"><h2 id="publications">Selected Publications</h2><a class="full-list"
           href="https://scholar.google.com/citations?user=SWU7N_sAAAAJ&hl=en" target="_blank"
-          rel="noopener noreferrer">Full List</a>)</h2>
+          rel="noopener noreferrer">Full list <span aria-hidden="true">↗</span></a></div>
 
-      (* Equal contribution)
+      <p class="publication-note">* Equal contribution</p>
 
       <div class="publications">
         <ol class="bibliography">
@@ -190,7 +184,7 @@
           <li>
             <div class="pub-row">
               <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-                <img src="https://raw.githubusercontent.com/QwenLM/Qwen-Drive-1.0/main/assets/overview.png"
+                <img src="./assets/img/QwenDrive.png"
                   class="teaser img-fluid z-depth-1" style="width:100%;height:auto;"
                   alt="Qwen-Drive-1.0 overview" />
                 <abbr class="badge">arXiv'26</abbr>
@@ -210,9 +204,13 @@
                       class="fab fa-github"></i> Code</a>
                   <a href="https://qwen.ai/blog?id=qwen-drive-1.0" class="btn btn-sm z-depth-0" role="button"
                     target="_blank" rel="noopener noreferrer" style="font-size:12px;">Blog</a>
+                  <a href="https://github.com/QwenLM/Qwen-Drive-1.0/stargazers" class="btn btn-sm z-depth-0"
+                    role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                      class="fas fa-star"></i> Star <span class="star-count"
+                      data-repo="QwenLM/Qwen-Drive-1.0">383</span></a>
                 </div>
-                <div class="pub-summary">A vision-language foundation model that unifies <b>3D perception</b>,
-                  driving VQA, and motion planning for autonomous driving.</div>
+                <div class="pub-summary">A <b>vision-language foundation model for autonomous driving</b> that unifies
+                  3D perception, driving VQA, and motion planning.</div>
               </div>
             </div>
           </li>
@@ -220,25 +218,28 @@
           <li>
             <div class="pub-row">
               <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-                <img src="./assets/img/HERMES.jpg" class="teaser img-fluid z-depth-1" style="width:100%;height:auto;" />
-                <abbr class="badge">ICCV'25</abbr>
+                <img src="./assets/img/HERMES++.png" class="teaser img-fluid z-depth-1" style="width:100%;height:auto;" alt="HERMES++ framework for scene generation and understanding" />
+                <abbr class="badge">TPAMI'26</abbr>
               </div>
               <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-                <div class="title"><a href="https://arxiv.org/abs/2501.14729" target="_blank"
-                    rel="noopener noreferrer">HERMES: A Unified Self-Driving World Model for Simultaneous 3D Scene
-                    Understanding and Generation</a></div>
-                <div class="author"><u><b>Xin Zhou</u>*</b>, Dingkang Liang*, Sifan Tu, Xiwu Chen, Yikang
+                <div class="title"><a href="https://arxiv.org/abs/2604.28196" target="_blank" rel="noopener noreferrer">HERMES++: Toward a Unified Driving World Model for 3D Scene Understanding and Generation</a></div>
+                <div class="publication-version"><span class="version-label">ICCV 2025 version</span>
+                  <a href="https://arxiv.org/abs/2501.14729" target="_blank" rel="noopener noreferrer">HERMES: A Unified Self-Driving World Model for Simultaneous 3D Scene Understanding and Generation</a>
+                </div>
+                <div class="author"><u><b>Xin Zhou</b></u>, Dingkang Liang, Sifan Tu, Xiwu Chen, Yikang
                   Ding, Dingyuan Zhang, Feiyang Tan, Hengshuang Zhao, Xiang Bai</div>
                 <div class="links">
+                  <a href="https://arxiv.org/pdf/2604.28196" class="btn btn-sm z-depth-0" role="button" target="_blank"
+                    rel="noopener noreferrer" style="font-size:12px;"><i class="fas fa-file-pdf"></i> TPAMI PDF</a>
                   <a href="https://arxiv.org/pdf/2501.14729" class="btn btn-sm z-depth-0" role="button" target="_blank"
-                    style="font-size:12px;"><i class="fas fa-file-pdf"></i> PDF</a>
-                  <a href="https://github.com/LMD0311/HERMES" class="btn btn-sm z-depth-0" role="button" target="_blank"
+                    rel="noopener noreferrer" style="font-size:12px;"><i class="fas fa-file-pdf"></i> ICCV PDF</a>
+                  <a href="https://github.com/H-EmbodVis/HERMESV2" class="btn btn-sm z-depth-0" role="button" target="_blank"
                     style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
-                  <a href="https://lmd0311.github.io/HERMES/" class="btn btn-sm z-depth-0" role="button" target="_blank"
+                  <a href="https://h-embodvis.github.io/HERMESV2/" class="btn btn-sm z-depth-0" role="button" target="_blank"
                     style="font-size:12px;"><i class="fas fa-home"></i> Project</a>
-                  <iframe src="https://ghbtns.com/github-btn.html?user=LMD0311&repo=HERMES&type=star&count=true"
-                    frameborder="0" scrolling="0" width="90" height="20" title="GitHub" width="100%;"
-                    style="position: relative; top: 6px"></iframe>
+                  <a href="https://github.com/H-EmbodVis/HERMESV2/stargazers" class="btn btn-sm z-depth-0"
+                    role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                      class="fas fa-star"></i> Star <span class="star-count" data-repo="H-EmbodVis/HERMESV2">71</span></a>
                 </div>
                 <div class="pub-summary">A <b>unified</b> driving world model enabling joint multi-view understanding
                   and future lidar generation.</div>
@@ -264,9 +265,10 @@
                     style="font-size:12px;"><i class="fas fa-file-pdf"></i> PDF</a>
                   <a href="https://github.com/jerryfeng2003/PointGST" class="btn btn-sm z-depth-0" role="button"
                     target="_blank" style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
-                  <iframe src="https://ghbtns.com/github-btn.html?user=jerryfeng2003&repo=PointGST&type=star&count=true"
-                    frameborder="0" scrolling="0" width="100" height="20" title="GitHub" width="100%;"
-                    style="position: relative; top: 6px"></iframe>
+                  <a href="https://github.com/jerryfeng2003/PointGST/stargazers" class="btn btn-sm z-depth-0"
+                    role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                      class="fas fa-star"></i> Star <span class="star-count"
+                      data-repo="jerryfeng2003/PointGST">389</span></a>
                 </div>
                 <div class="pub-summary">A <b>spectral domain perspective</b> for point PEFT, very strong performance.
                 </div>
@@ -297,9 +299,9 @@
                     style="font-size:12px;">Slide</a>
                   <a href="https://zhuanlan.zhihu.com/p/686850575" class="btn btn-sm z-depth-0" role="button"
                     target="_blank" style="font-size:12px;">Blog <i class='fab fa-zhihu'></i></a>
-                  <iframe src="https://ghbtns.com/github-btn.html?user=LMD0311&repo=DAPT&type=star&count=true"
-                    frameborder="0" scrolling="0" width="90" height="20" title="GitHub" width="100%;"
-                    style="position: relative; top: 6px"></iframe>
+                  <a href="https://github.com/LMD0311/DAPT/stargazers" class="btn btn-sm z-depth-0" role="button"
+                    target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i class="fas fa-star"></i> Star
+                    <span class="star-count" data-repo="LMD0311/DAPT">171</span></a>
 
                 </div>
                 <div class="pub-summary">Introduce Dynamic Adapter with prompt tuning in point PEFT.</div>
@@ -329,39 +331,11 @@
                     target="_blank" style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
                   <a href="https://zhuanlan.zhihu.com/p/687191399" class="btn btn-sm z-depth-0" role="button"
                     target="_blank" style="font-size:12px;">Blog <i class='fab fa-zhihu'></i></a>
-                  <iframe src="https://ghbtns.com/github-btn.html?user=LMD0311&repo=PointMamba&type=star&count=true"
-                    frameborder="0" scrolling="0" width="100" height="20" title="GitHub" width="100%;"
-                    style="position: relative; top: 6px"></iframe>
+                  <a href="https://github.com/LMD0311/PointMamba/stargazers" class="btn btn-sm z-depth-0" role="button"
+                    target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i class="fas fa-star"></i> Star
+                    <span class="star-count" data-repo="LMD0311/PointMamba">548</span></a>
                 </div>
                 <div class="pub-summary">A simple state space model tailored for point cloud analysis.</div>
-              </div>
-            </div>
-          </li>
-
-          <li>
-            <div class="pub-row">
-              <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-                <img src="./assets/img/UniSeg3D.png" class="teaser img-fluid z-depth-1"
-                  style="width:100%;height:auto;" />
-                <abbr class="badge">NeurIPS'24</abbr>
-              </div>
-              <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-                <div class="title"><a href="https://arxiv.org/abs/2407.03263" target="_blank"
-                    rel="noopener noreferrer">A Unified Framework for 3D Scene Understanding</a></div>
-                <div class="author">Wei Xu*, Chunsheng Shi*, Sifan Tu, <u><b>Xin Zhou</b></u>, Dingkang Liang,
-                  Xiang Bai</div>
-                <div class="links">
-                  <a href="https://arxiv.org/pdf/2407.03263" class="btn btn-sm z-depth-0" role="button" target="_blank"
-                    style="font-size:12px;"><i class="fas fa-file-pdf"></i> PDF</a>
-                  <a href="https://dk-liang.github.io/UniSeg3D/" class="btn btn-sm z-depth-0" role="button"
-                    target="_blank" style="font-size:12px;"><i class="fas fa-home"></i> Project</a>
-                  <a href="https://github.com/dk-liang/UniSeg3D" class="btn btn-sm z-depth-0" role="button"
-                    target="_blank" style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
-                  <iframe src="https://ghbtns.com/github-btn.html?user=dk-liang&repo=UniSeg3D&type=star&count=true"
-                    frameborder="0" scrolling="0" width="100" height="20" title="GitHub" width="100%;"
-                    style="position: relative; top: 6px"></iframe>
-                </div>
-                <div class="pub-summary">A unified framework for across <b>six</b> 3D segmentation tasks.</div>
               </div>
             </div>
           </li>
@@ -388,17 +362,11 @@
 
       <ul>
         <li><b>Conference Reviewer:</b>
-          <ul>
-            <li>2026: CVPR, ECCV, ICML, AAAI, WACV</li>
-            <li>2025: ICCV, ICML, ICLR, NeurIPS</li>
-            <li>2024: NeurIPS, ECCV, ICRA, ACCV</li>
-          </ul>
+          CVPR, ECCV, ICML, AAAI, WACV, ICCV, ICLR, NeurIPS, ICRA, ACCV
         </li>
 
         <li><b>Journal Reviewer:</b>
-          <ul>
-            <li>TPAMI, IJCV, SCIS, PR, RA-L, IJDE, TNNLS, TMLR</li>
-          </ul>
+          TPAMI, IJCV, SCIS, PR, RA-L, IJDE, TNNLS, TMLR
         </li>
       </ul>
 
@@ -412,7 +380,140 @@
 
     </footer>
   </div>
+  <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+    <i class="fas fa-moon md-icon md-icon-moon" aria-hidden="true"></i>
+    <i class="fas fa-sun md-icon md-icon-sun" aria-hidden="true"></i>
+    <span class="sr-only">Dark mode</span>
+  </button>
+  <div class="md-modal" id="wechat-modal" role="dialog" aria-modal="true" aria-labelledby="wechat-modal-title" hidden>
+    <div class="md-modal-scrim" data-md-modal-close></div>
+    <div class="md-modal-card">
+      <button type="button" class="md-modal-close" data-md-modal-close aria-label="Close dialog">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+      <h3 id="wechat-modal-title">WeChat</h3>
+      <p>扫码添加微信，申请好友时请说明来意<br>Scan to add me on WeChat — please introduce yourself</p>
+      <img src="./assets/img/wechat.jpg" alt="WeChat QR code" />
+    </div>
+  </div>
   <script src="/assets/js/scale.fix.js"></script>
+  <script>
+    (function () {
+      var button = document.getElementById('theme-toggle');
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      function update() {
+        var dark = document.documentElement.dataset.theme === 'dark';
+        button.setAttribute('aria-pressed', String(dark));
+        button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+        button.querySelector('span').textContent = dark ? 'Light mode' : 'Dark mode';
+      }
+      update();
+      button.addEventListener('click', function () {
+        var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('theme', next);
+        update();
+      });
+    }());
+  </script>
+  <script>
+    (function () {
+      var trigger = document.querySelector('.wechat-link');
+      var modal = document.getElementById('wechat-modal');
+      if (!trigger || !modal) return;
+      var closeBtn = modal.querySelector('.md-modal-close');
+      var lastFocus = null;
+      function open() {
+        lastFocus = document.activeElement;
+        modal.hidden = false;
+        requestAnimationFrame(function () { modal.classList.add('md-open'); });
+        document.documentElement.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+      function close() {
+        modal.classList.remove('md-open');
+        document.documentElement.style.overflow = '';
+        window.setTimeout(function () { modal.hidden = true; }, 220);
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+      trigger.addEventListener('click', function (e) { e.preventDefault(); open(); });
+      modal.addEventListener('click', function (e) {
+        if (e.target instanceof Element && e.target.closest('[data-md-modal-close]')) close();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !modal.hidden) close();
+      });
+    }());
+  </script>
+  <script>
+    (function () {
+      var btt = document.getElementById('back-to-top');
+      if (!btt) return;
+      function sync() {
+        document.body.classList.toggle('fab-collapsed', btt.classList.contains('hidden'));
+      }
+      new MutationObserver(sync).observe(btt, { attributes: true, attributeFilter: ['class'] });
+      sync();
+    }());
+  </script>
+  <script>
+    (function () {
+      function fmt(n) {
+        return Number(n).toLocaleString('en-US');
+      }
+      Array.prototype.forEach.call(document.querySelectorAll('.star-count[data-repo]'), function (el) {
+        fetch('https://api.github.com/repos/' + el.getAttribute('data-repo'))
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error(String(r.status))); })
+          .then(function (d) { el.textContent = fmt(d.stargazers_count || 0); })
+          .catch(function () { /* keep the embedded count */ });
+      });
+    }());
+  </script>
+  <script>
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) return;
+
+      if ('IntersectionObserver' in window) {
+        var targets = document.querySelectorAll('.pub-row, .news-scroll, section > ul');
+        var pubs = document.querySelectorAll('.publications .pub-row');
+        Array.prototype.forEach.call(pubs, function (el, i) {
+          el.style.setProperty('--md-reveal-delay', Math.min(i, 3) * 70 + 'ms');
+        });
+        Array.prototype.forEach.call(targets, function (el) { el.classList.add('md-reveal'); });
+        var io = new IntersectionObserver(function (entries) {
+          Array.prototype.forEach.call(entries, function (entry) {
+            if (!entry.isIntersecting) return;
+            var el = entry.target;
+            el.classList.add('md-visible');
+            io.unobserve(el);
+            var delay = parseInt(el.style.getPropertyValue('--md-reveal-delay'), 10) || 0;
+            setTimeout(function () {
+              el.classList.remove('md-reveal', 'md-visible');
+              el.style.removeProperty('--md-reveal-delay');
+            }, delay + 650);
+          });
+        }, { threshold: 0.05, rootMargin: '0px 0px -32px 0px' });
+        Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+      }
+
+      var RIPPLE_HOSTS = '.material-home .publications .links a.btn, .material-home .theme-toggle, .material-home .profile-nav a, .material-home .social-icons a:not(.wechat-link)';
+      document.addEventListener('pointerdown', function (e) {
+        var host = e.target instanceof Element ? e.target.closest(RIPPLE_HOSTS) : null;
+        if (!host) return;
+        var rect = host.getBoundingClientRect();
+        var size = Math.max(rect.width, rect.height);
+        var ripple = document.createElement('span');
+        ripple.className = 'md-ripple';
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+        host.appendChild(ripple);
+        ripple.addEventListener('animationend', function () { ripple.remove(); });
+      });
+    }());
+  </script>
 
 </body>
 

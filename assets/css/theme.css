@@ -1,0 +1,183 @@
+/*
+ * Homepage theme interface — Material Design 3 (teal tonal palette)
+ *
+ * Change the tokens below to retheme the homepage in one place.
+ * The dark-mode button changes html[data-theme], while the system preference
+ * is used automatically when no manual choice has been saved.
+ */
+:root {
+  /* Color roles — warm paper & terracotta (Claude-inspired), mapped to M3 roles */
+  --theme-primary: #b0522f;
+  --theme-primary-hover: #96452a;
+  --theme-primary-soft: #f6e3d8;
+  --theme-on-primary: #ffffff;
+  --theme-primary-container: #f4ded2;
+  --theme-on-primary-container: #3b1508;
+  --theme-background: #faf9f5;
+  --theme-surface: #ffffff;
+  --theme-surface-container: #f0eee6;
+  --theme-text: #141413;
+  --theme-text-secondary: #5e5d59;
+  --theme-text-muted: #87867f;
+  --theme-border: #e3e0d7;
+  --theme-button-text: #3b1508;
+  --theme-button-background: #f0dcce;
+  --theme-button-hover: #e7ccba;
+  --theme-shadow: rgba(60, 45, 35, .10);
+
+  /* Elevation (M3 levels 1-3) */
+  --theme-elevation-1: 0 1px 2px rgba(20, 19, 17, .06), 0 1px 3px 1px rgba(20, 19, 17, .04);
+  --theme-elevation-2: 0 2px 4px rgba(20, 19, 17, .07), 0 3px 8px 2px rgba(20, 19, 17, .06);
+  --theme-elevation-3: 0 4px 8px rgba(20, 19, 17, .09), 0 8px 24px 4px rgba(20, 19, 17, .09);
+
+  /* Motion (M3 easing curves and durations) */
+  --theme-ease-standard: cubic-bezier(.2, 0, 0, 1);
+  --theme-ease-emphasized: cubic-bezier(.05, .7, .1, 1);
+  --theme-duration-short: 150ms;
+  --theme-duration-medium: 300ms;
+  --theme-duration-long: 500ms;
+
+  /* Shape (M3 shape scale) */
+  --theme-radius-sm: 8px;
+  --theme-radius-md: 12px;
+  --theme-radius-lg: 16px;
+  --theme-radius-full: 999px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-primary: #e08b62;
+    --theme-primary-hover: #edaa87;
+    --theme-primary-soft: #4a3125;
+    --theme-on-primary: #431708;
+    --theme-primary-container: #4e3226;
+    --theme-on-primary-container: #f4d3bf;
+    --theme-background: #141413;
+    --theme-surface: #1f1e1c;
+    --theme-surface-container: #242320;
+    --theme-text: #f0eee6;
+    --theme-text-secondary: #c6c3bb;
+    --theme-text-muted: #a09d95;
+    --theme-border: #3c3a35;
+    --theme-button-text: #f4d3bf;
+    --theme-button-background: #4e3226;
+    --theme-button-hover: #5e4032;
+    --theme-shadow: rgba(0, 0, 0, .28);
+    --theme-elevation-1: 0 1px 2px rgba(0, 0, 0, .30), 0 1px 3px 1px rgba(0, 0, 0, .20);
+    --theme-elevation-2: 0 2px 4px rgba(0, 0, 0, .32), 0 3px 8px 2px rgba(0, 0, 0, .24);
+    --theme-elevation-3: 0 4px 8px rgba(0, 0, 0, .36), 0 8px 24px 4px rgba(0, 0, 0, .28);
+  }
+}
+
+html[data-theme="light"] {
+  --theme-primary: #b0522f;
+  --theme-primary-hover: #96452a;
+  --theme-primary-soft: #f6e3d8;
+  --theme-on-primary: #ffffff;
+  --theme-primary-container: #f4ded2;
+  --theme-on-primary-container: #3b1508;
+  --theme-background: #faf9f5;
+  --theme-surface: #ffffff;
+  --theme-surface-container: #f0eee6;
+  --theme-text: #141413;
+  --theme-text-secondary: #5e5d59;
+  --theme-text-muted: #87867f;
+  --theme-border: #e3e0d7;
+  --theme-button-text: #3b1508;
+  --theme-button-background: #f0dcce;
+  --theme-button-hover: #e7ccba;
+  --theme-shadow: rgba(60, 45, 35, .10);
+  --theme-elevation-1: 0 1px 2px rgba(20, 19, 17, .06), 0 1px 3px 1px rgba(20, 19, 17, .04);
+  --theme-elevation-2: 0 2px 4px rgba(20, 19, 17, .07), 0 3px 8px 2px rgba(20, 19, 17, .06);
+  --theme-elevation-3: 0 4px 8px rgba(20, 19, 17, .09), 0 8px 24px 4px rgba(20, 19, 17, .09);
+}
+
+html[data-theme="dark"] {
+  --theme-primary: #e08b62;
+  --theme-primary-hover: #edaa87;
+  --theme-primary-soft: #4a3125;
+  --theme-on-primary: #431708;
+  --theme-primary-container: #4e3226;
+  --theme-on-primary-container: #f4d3bf;
+  --theme-background: #141413;
+  --theme-surface: #1f1e1c;
+  --theme-surface-container: #242320;
+  --theme-text: #f0eee6;
+  --theme-text-secondary: #c6c3bb;
+  --theme-text-muted: #a09d95;
+  --theme-border: #3c3a35;
+  --theme-button-text: #f4d3bf;
+  --theme-button-background: #4e3226;
+  --theme-button-hover: #5e4032;
+  --theme-shadow: rgba(0, 0, 0, .28);
+  --theme-elevation-1: 0 1px 2px rgba(0, 0, 0, .30), 0 1px 3px 1px rgba(0, 0, 0, .20);
+  --theme-elevation-2: 0 2px 4px rgba(0, 0, 0, .32), 0 3px 8px 2px rgba(0, 0, 0, .24);
+  --theme-elevation-3: 0 4px 8px rgba(0, 0, 0, .36), 0 8px 24px 4px rgba(0, 0, 0, .28);
+}
+
+.material-home {
+  background: var(--theme-background) !important;
+  color: var(--theme-text) !important;
+}
+.material-home ::selection { background: var(--theme-primary-container); color: var(--theme-on-primary-container); }
+.material-home a { color: var(--theme-primary) !important; }
+.material-home a:hover { color: var(--theme-primary-hover) !important; }
+.material-home section > h2,
+.material-home section > h3,
+.material-home section > h4,
+.material-home .section-heading h2 { color: var(--theme-text) !important; }
+.material-home .news-scroll { background: var(--theme-surface-container) !important; scrollbar-color: var(--theme-border) transparent; }
+.material-home .news-scroll::-webkit-scrollbar-thumb { background: var(--theme-border); border-radius: var(--theme-radius-full); }
+.material-home .news-scroll strong { color: var(--theme-primary) !important; }
+.material-home .star-count { background: var(--theme-primary) !important; color: var(--theme-on-primary) !important; }
+.material-home .news-star i { color: var(--theme-primary) !important; }
+.material-home .social-icons a { color: var(--theme-primary) !important; }
+.material-home .social-icons a:hover,
+.material-home .social-icons a:focus-visible,
+.material-home .profile-nav a:hover,
+.material-home .profile-nav a:focus-visible,
+.material-home .full-list:hover,
+.material-home .full-list:focus-visible { color: var(--theme-primary) !important; background: var(--theme-primary-soft) !important; }
+.material-home .theme-toggle { background: var(--theme-primary-container) !important; color: var(--theme-on-primary-container) !important; box-shadow: var(--theme-elevation-2); }
+.material-home .theme-toggle:hover,
+.material-home .theme-toggle:focus-visible { background: var(--theme-button-hover) !important; color: var(--theme-on-primary-container) !important; box-shadow: var(--theme-elevation-3); }
+.material-home .md-modal-card { background: var(--theme-surface-container) !important; color: var(--theme-text) !important; box-shadow: var(--theme-elevation-3); }
+.material-home .md-modal-card h3 { color: var(--theme-text) !important; }
+.material-home .md-modal-card p { color: var(--theme-text-secondary) !important; }
+.material-home .md-modal-close { color: var(--theme-text-muted) !important; }
+.material-home .md-modal-close:hover,
+.material-home .md-modal-close:focus-visible { color: var(--theme-primary) !important; background: var(--theme-primary-soft) !important; }
+.material-home .pub-row .pub-summary { background: var(--theme-surface-container) !important; border-left-color: var(--theme-primary) !important; }
+.material-home .pub-row .pub-summary b,
+.material-home .pub-row .pub-summary strong { color: var(--theme-primary) !important; }
+.material-home .pub-row { background: var(--theme-surface) !important; border-color: var(--theme-border) !important; box-shadow: var(--theme-elevation-1); }
+.material-home .pub-row:hover { border-color: var(--theme-primary) !important; box-shadow: var(--theme-elevation-2); }
+.material-home .pub-row .title a,
+.material-home .pub-row .title a:visited { color: var(--theme-text) !important; }
+.material-home .pub-row .title a:hover { color: var(--theme-primary) !important; }
+.material-home .pub-row .author,
+.material-home .pub-row .pub-summary,
+.material-home .publication-version .version-label { color: var(--theme-text-secondary) !important; }
+.material-home .pub-row .abbr .badge { background: var(--theme-primary) !important; color: var(--theme-on-primary) !important; }
+.material-home .pub-row .abbr img.teaser { background: var(--theme-surface) !important; }
+
+/* Publication action buttons — M3 filled tonal buttons (m3.material.io spec) */
+.material-home .publications .links a.btn,
+.material-home .publications .links a.btn:visited {
+  color: var(--theme-button-text) !important;
+  background: var(--theme-button-background) !important;
+  border-color: transparent !important;
+}
+.material-home .publications .links a.btn:hover,
+.material-home .publications .links a.btn:focus-visible {
+  color: var(--theme-button-text) !important;
+  background: var(--theme-button-hover) !important;
+}
+.material-home .publications .links a.btn:active { background: var(--theme-button-hover) !important; }
+
+.material-home .wechat-tooltip { color: var(--theme-text-secondary) !important; background: var(--theme-surface) !important; border-color: var(--theme-border) !important; box-shadow: var(--theme-elevation-3) !important; }
+.material-home .wechat-tooltip::after { background: var(--theme-surface) !important; border-color: var(--theme-border) !important; }
+.material-home .skip-link { background: var(--theme-primary) !important; color: var(--theme-on-primary) !important; }
+.material-home #back-to-top { background: var(--theme-primary) !important; color: var(--theme-on-primary) !important; box-shadow: var(--theme-elevation-3); }
+.material-home a:focus-visible,
+.material-home button:focus-visible { outline: 2px solid var(--theme-primary); outline-offset: 2px; }

@@ -5,8 +5,7 @@
   	height:1.5em;
 	margin:0;
 	padding:0;
-	background:#036;
-	/* background: rgb(0,36,62); */
+	background: var(--theme-primary, #036);
 	text-align:left;
 	color:#fff;
 	position:fixed;
@@ -36,7 +35,7 @@
 	width:7px;
 	height:5px;
 	/* position:relative; */
-	background:#036;
+	background: var(--theme-primary, #036);
 	z-index:1;
 	margin:0;
 
@@ -51,8 +50,8 @@
 	width:6.5em;
 	height:1px;
 	letter-spacing:1px;
-	color:#036;
-	border:1px solid #036;
+	color: var(--theme-primary, #036);
+	border:1px solid var(--theme-primary, #036);
 
 }
 

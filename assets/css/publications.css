@@ -90,3 +90,76 @@ blockquote { background: var(--global-bg-color); border-left: 2px solid var(--gl
   .pub-row .title a{line-height:1.32 !important; display:inline-block;}
   .pub-row .author{line-height:1.35 !important; word-break:break-word;}
 }
+
+/* Consistent image frames and compact, readable publication cards. */
+.publications .pub-row {
+  display: grid !important;
+  grid-template-columns: minmax(180px, 30%) minmax(0, 1fr);
+  align-items: start !important;
+  gap: 22px;
+  padding: 18px;
+}
+.publications ol.bibliography > li { margin-bottom: 16px; }
+.publications .pub-row .col-sm-3.abbr,
+.publications .pub-row .col-sm-9 {
+  width: 100% !important;
+  min-width: 0;
+  height: auto;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.publications .pub-row .abbr img.teaser {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: var(--theme-surface, #fff);
+  border-radius: var(--theme-radius-md, 12px);
+  margin: 0 !important;
+}
+.publications ol.bibliography li .abbr abbr {
+  position: static;
+  margin-top: 9px;
+  padding: 4px 10px;
+  border-radius: var(--theme-radius-full, 999px);
+  font: 500 11px/1.4 Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  letter-spacing: .5px;
+  box-shadow: none;
+}
+.publications .pub-row .title,
+.publications .pub-row .title a {
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45 !important;
+  letter-spacing: -.015em;
+}
+.publications .pub-row .title { margin: 0 0 8px; }
+.publications .pub-row .author {
+  font-size: 13px;
+  line-height: 1.55 !important;
+  color: var(--theme-text-secondary, #586474);
+}
+.publications .pub-row .publication-version { margin-bottom: 8px; }
+.publications .pub-row .links { margin-top: 11px; gap: 7px; }
+.publications .pub-row .pub-summary {
+  margin-top: 12px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  font-style: normal;
+  background: var(--theme-surface-container, #f0eee6);
+  border: 0;
+  border-left: 3px solid var(--theme-primary, #b0522f);
+  border-radius: var(--theme-radius-md, 12px);
+  box-shadow: none;
+  color: var(--theme-text-secondary, #586474);
+}
+@media screen and (max-width: 640px) {
+  .publications .pub-row { grid-template-columns: minmax(0, 1fr); gap: 15px; padding: 16px; }
+  .publications .pub-row .col-sm-3.abbr { max-width: 340px; margin: 0 auto !important; }
+}
+
+/* Homepage colors (titles, authors, buttons, badges) are token-driven in theme.css. */
