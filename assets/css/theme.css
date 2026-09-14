@@ -161,6 +161,19 @@ html[data-theme="dark"] {
 .material-home .publication-version .version-label { color: var(--theme-text-secondary) !important; }
 .material-home .pub-row .abbr .badge { background: var(--theme-primary) !important; color: var(--theme-on-primary) !important; }
 .material-home .pub-row .abbr img.teaser { background: var(--theme-surface) !important; }
+.material-home .pub-group-title { color: var(--theme-text) !important; }
+.material-home .pub-group-title i { color: var(--theme-primary) !important; }
+.material-home .pub-group-desc { color: var(--theme-text-secondary) !important; }
+.material-home .pub-mini { background: var(--theme-surface) !important; border-color: var(--theme-border) !important; }
+.material-home .pub-mini:hover { border-color: var(--theme-primary) !important; }
+.material-home .pub-mini-badge { background: var(--theme-primary-container) !important; color: var(--theme-on-primary-container) !important; }
+.material-home .pub-mini-tag { color: var(--theme-primary) !important; border-color: var(--theme-primary) !important; }
+.material-home .pub-mini-title,
+.material-home .pub-mini-title:visited { color: var(--theme-text) !important; }
+.material-home .pub-mini-title:hover { color: var(--theme-primary) !important; }
+.material-home .pub-mini-desc { color: var(--theme-text-secondary) !important; }
+.material-home .pub-mini-authors { color: var(--theme-text-muted) !important; }
+.material-home .pub-mini-authors u { color: var(--theme-text-secondary) !important; }
 
 /* Publication action buttons — M3 filled tonal buttons (m3.material.io spec) */
 .material-home .publications .links a.btn,

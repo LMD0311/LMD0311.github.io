@@ -357,9 +357,14 @@ a:hover { color: #084e86; text-decoration: underline; }
   box-sizing: border-box;
 }
 .pub-row .links a.btn i { font-size: 12px; line-height: 1; }
-.pub-row .links .star-count, .news-star .star-count { display: inline-block; min-width: 20px; margin-left: 6px; padding: 1px 7px; border-radius: var(--theme-radius-full); font-size: 11px; font-weight: 600; line-height: 16px; letter-spacing: .2px; text-align: center; }
-.pub-row .links .star-count:empty, .news-star .star-count:empty { display: none; }
+.pub-row .links .star-count, .pub-mini .links .star-count, .news-star .star-count { display: inline-block; min-width: 20px; margin-left: 6px; padding: 1px 7px; border-radius: var(--theme-radius-full); font-size: 11px; font-weight: 600; line-height: 16px; letter-spacing: .2px; text-align: center; }
+.pub-row .links .star-count:empty, .pub-mini .links .star-count:empty, .news-star .star-count:empty { display: none; }
 .material-home .news-star i { font-size: 12px; margin-right: 4px; }
+/* Combined star button: two versions' stars (e.g. ICCV + TPAMI) kept on one line. */
+.pub-row .links a.star-multi { white-space: nowrap; }
+.material-home .publications .links a.btn.star-multi { padding-right: 9px !important; padding-left: 9px !important; }
+.pub-row .links a.star-multi .star-count { min-width: 0; margin-left: 5px; padding: 1px 5px; font-size: 10.5px; }
+.pub-row .links a.star-multi .star-plus { margin-left: 4px; font-size: 10.5px; opacity: .55; }
 
 /* Header avatar slightly larger on desktop */
 @media screen and (min-width: 961px) {
@@ -556,6 +561,15 @@ html[data-theme="dark"] .material-home .theme-toggle .md-icon-moon { opacity: 0;
 .material-home .profile-nav { display: flex; flex-direction: column; gap: 2px; margin-top: 25px; }
 .material-home .profile-nav a { position: relative; overflow: hidden; padding: 9px 16px; border-radius: var(--theme-radius-full); color: var(--md-muted); font-size: 13px; font-weight: 500; letter-spacing: .2px; transition: color var(--theme-duration-short) var(--theme-ease-standard), background var(--theme-duration-short) var(--theme-ease-standard), transform var(--theme-duration-medium) var(--theme-ease-emphasized); }
 .material-home .profile-nav a:hover, .material-home .profile-nav a:focus-visible { color: var(--md-primary); background: var(--md-primary-soft); text-decoration: none; transform: translateX(2px); }
+/* Publications nav item expands its research-direction sub-links on hover/focus (M3 drawer motion). */
+.material-home .profile-nav .nav-group { display: flex; flex-direction: column; gap: 2px; }
+.material-home .profile-nav .nav-sub { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows var(--theme-duration-medium) var(--theme-ease-emphasized), opacity var(--theme-duration-medium) var(--theme-ease-standard); }
+.material-home .profile-nav .nav-sub-inner { display: flex; flex-direction: column; gap: 2px; overflow: hidden; min-height: 0; }
+.material-home .profile-nav .nav-group:hover .nav-sub,
+.material-home .profile-nav .nav-group:focus-within .nav-sub { grid-template-rows: 1fr; opacity: 1; }
+.material-home .profile-nav .nav-sub a { padding: 6px 16px 6px 32px; font-size: 12px; }
+.material-home .profile-nav .nav-sub a::before { content: ""; position: absolute; left: 19px; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: currentColor; opacity: .55; }
+.material-home .pub-group[id] { scroll-margin-top: 44px; }
 .material-home section { width: auto; float: none; padding: 48px 0 70px; animation: md-fade-up var(--theme-duration-long) .06s var(--theme-ease-emphasized) both; }
 .material-home section > h2 { margin: 34px 0 12px; color: var(--md-on-surface); font-size: 22px; font-weight: 600; }
 .material-home h2[id], .material-home h3[id] { scroll-margin-top: 44px; }
@@ -605,6 +619,7 @@ html[data-theme="dark"] .material-home .theme-toggle .md-icon-moon { opacity: 0;
   .material-home header > a:not(.image), .material-home header address, .material-home header email { display: inline-block; margin: 6px 8px 0; }
   .material-home .social-icons, .material-home .profile-nav { justify-content: center; flex-direction: row; flex-wrap: wrap; }
   .material-home .profile-nav { margin-top: 18px; }
+  .material-home .profile-nav .nav-sub { display: none; }
   .material-home section { padding-top: 22px; }
 }
 @media print, screen and (max-width: 640px) {

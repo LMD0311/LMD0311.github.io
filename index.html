@@ -31,10 +31,10 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 
 
-  <link rel="stylesheet" href="./assets/css/style.css?v=20260914">
-  <link rel="stylesheet" href="./assets/css/publications.css?v=20260914">
-  <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/hust-inf.css?v=20260914">
-  <link rel="stylesheet" href="./assets/css/theme.css?v=20260914">
+  <link rel="stylesheet" href="./assets/css/style.css?v=20260915">
+  <link rel="stylesheet" href="./assets/css/publications.css?v=20260915">
+  <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/hust-inf.css?v=20260915">
+  <link rel="stylesheet" href="./assets/css/theme.css?v=20260915">
 
   <!-- if you are using this template, please change the Baidu/Google Analytics ID below -->
   <script>
@@ -117,7 +117,16 @@
       <nav class="profile-nav" aria-label="Page sections">
         <a href="#about-me">About</a>
         <a href="#news">News</a>
-        <a href="#publications">Publications</a>
+        <div class="nav-group">
+          <a href="#publications">Publications</a>
+          <div class="nav-sub">
+            <div class="nav-sub-inner">
+              <a href="#pub-vla">Vision(-Language)(-Action)</a>
+              <a href="#pub-generation">Generative World Model</a>
+              <a href="#pub-3d">3D Perception</a>
+            </div>
+          </div>
+        </div>
         <a href="#experience">Experience</a>
         <a href="#services">Service</a>
       </nav>
@@ -179,168 +188,350 @@
       <p class="publication-note">* Equal contribution</p>
 
       <div class="publications">
-        <ol class="bibliography">
 
-          <li>
-            <div class="pub-row">
-              <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-                <img src="./assets/img/QwenDrive.png"
-                  class="teaser img-fluid z-depth-1" style="width:100%;height:auto;"
-                  alt="Qwen-Drive-1.0 overview" />
-                <abbr class="badge">arXiv'26</abbr>
-              </div>
-              <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-                <div class="title"><a href="https://arxiv.org/abs/2609.00111" target="_blank"
-                    rel="noopener noreferrer">Qwen-Drive-1.0: An Initial Step towards a Vision-Language Foundation
-                    Model for Autonomous Driving</a></div>
-                <div class="author"><u><b>Xin Zhou</b></u>, Zongchuang Zhao, Zhibo Yang, Mingsheng Li, Humen Zhong,
-                  Shuai Bai, Du Chu, Ruizhe Chen, Zhaohai Li, Jun Tang, Qiuyue Wang, Mingkun Yang, Jiazhao Zhang,
-                  Dayiheng Liu, Dingkang Liang, Xiang Bai</div>
-                <div class="links">
-                  <a href="https://arxiv.org/pdf/2609.00111" class="btn btn-sm z-depth-0" role="button" target="_blank"
-                    rel="noopener noreferrer" style="font-size:12px;"><i class="fas fa-file-pdf"></i> PDF</a>
-                  <a href="https://github.com/QwenLM/Qwen-Drive-1.0/tree/main" class="btn btn-sm z-depth-0"
-                    role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
-                      class="fab fa-github"></i> Code</a>
-                  <a href="https://qwen.ai/blog?id=qwen-drive-1.0" class="btn btn-sm z-depth-0" role="button"
-                    target="_blank" rel="noopener noreferrer" style="font-size:12px;">Blog</a>
-                  <a href="https://github.com/QwenLM/Qwen-Drive-1.0/stargazers" class="btn btn-sm z-depth-0"
-                    role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
-                      class="fas fa-star"></i> Star <span class="star-count"
-                      data-repo="QwenLM/Qwen-Drive-1.0">383</span></a>
-                </div>
-                <div class="pub-summary">A <b>vision-language foundation model for autonomous driving</b> that unifies
-                  3D perception, driving VQA, and motion planning.</div>
-              </div>
-            </div>
-          </li>
+        <div class="pub-group" id="pub-vla">
+          <h3 class="pub-group-title"><i class="fas fa-language" aria-hidden="true"></i> Vision(-Language)(-Action)</h3>
+          <p class="pub-group-desc">Vision-language(-action) foundation model pretraining for autonomous driving and
+            embodied AI, plus unified generation and understanding.</p>
 
-          <li>
-            <div class="pub-row">
-              <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-                <img src="./assets/img/HERMES++.png" class="teaser img-fluid z-depth-1" style="width:100%;height:auto;" alt="HERMES++ framework for scene generation and understanding" />
-                <abbr class="badge">TPAMI'26</abbr>
-              </div>
-              <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-                <div class="title"><a href="https://arxiv.org/abs/2604.28196" target="_blank" rel="noopener noreferrer">HERMES++: Toward a Unified Driving World Model for 3D Scene Understanding and Generation</a></div>
-                <div class="publication-version"><span class="version-label">ICCV 2025 version</span>
-                  <a href="https://arxiv.org/abs/2501.14729" target="_blank" rel="noopener noreferrer">HERMES: A Unified Self-Driving World Model for Simultaneous 3D Scene Understanding and Generation</a>
+          <ol class="bibliography">
+            <li>
+              <div class="pub-row">
+                <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+                  <img src="./assets/img/QwenDrive.png" class="teaser img-fluid z-depth-1"
+                    style="width:100%;height:auto;" alt="Qwen-Drive-1.0 overview" />
+                  <abbr class="badge">arXiv'26</abbr>
                 </div>
-                <div class="author"><u><b>Xin Zhou</b></u>, Dingkang Liang, Sifan Tu, Xiwu Chen, Yikang
-                  Ding, Dingyuan Zhang, Feiyang Tan, Hengshuang Zhao, Xiang Bai</div>
-                <div class="links">
-                  <a href="https://arxiv.org/pdf/2604.28196" class="btn btn-sm z-depth-0" role="button" target="_blank"
-                    rel="noopener noreferrer" style="font-size:12px;"><i class="fas fa-file-pdf"></i> TPAMI PDF</a>
-                  <a href="https://arxiv.org/pdf/2501.14729" class="btn btn-sm z-depth-0" role="button" target="_blank"
-                    rel="noopener noreferrer" style="font-size:12px;"><i class="fas fa-file-pdf"></i> ICCV PDF</a>
-                  <a href="https://github.com/H-EmbodVis/HERMESV2" class="btn btn-sm z-depth-0" role="button" target="_blank"
-                    style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
-                  <a href="https://h-embodvis.github.io/HERMESV2/" class="btn btn-sm z-depth-0" role="button" target="_blank"
-                    style="font-size:12px;"><i class="fas fa-home"></i> Project</a>
-                  <a href="https://github.com/H-EmbodVis/HERMESV2/stargazers" class="btn btn-sm z-depth-0"
-                    role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
-                      class="fas fa-star"></i> Star <span class="star-count" data-repo="H-EmbodVis/HERMESV2">71</span></a>
-                </div>
-                <div class="pub-summary">A <b>unified</b> driving world model enabling joint multi-view understanding
-                  and future lidar generation.</div>
-              </div>
-            </div>
-          </li>
-
-          <li>
-            <div class="pub-row">
-              <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-                <img src="./assets/img/PointGST.jpg" class="teaser img-fluid z-depth-1"
-                  style="width:100%;height:auto;" />
-                <abbr class="badge">TPAMI'25</abbr>
-              </div>
-              <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-                <div class="title"><a href="https://arxiv.org/abs/2410.08114" target="_blank"
-                    rel="noopener noreferrer">Parameter-Efficient Fine-Tuning in Spectral Domain for Point Cloud
-                    Learning</a></div>
-                <div class="author">Dingkang Liang*, Tianrui Feng*, <u><b>Xin Zhou*</b></u>, Yumeng Zhang,
-                  Zhikang Zou, Xiang Bai</div>
-                <div class="links">
-                  <a href="https://arxiv.org/abs/2410.08114" class="btn btn-sm z-depth-0" role="button" target="_blank"
-                    style="font-size:12px;"><i class="fas fa-file-pdf"></i> PDF</a>
-                  <a href="https://github.com/jerryfeng2003/PointGST" class="btn btn-sm z-depth-0" role="button"
-                    target="_blank" style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
-                  <a href="https://github.com/jerryfeng2003/PointGST/stargazers" class="btn btn-sm z-depth-0"
-                    role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
-                      class="fas fa-star"></i> Star <span class="star-count"
-                      data-repo="jerryfeng2003/PointGST">389</span></a>
-                </div>
-                <div class="pub-summary">A <b>spectral domain perspective</b> for point PEFT, very strong performance.
+                <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+                  <div class="title"><a href="https://arxiv.org/abs/2609.00111" target="_blank"
+                      rel="noopener noreferrer">Qwen-Drive-1.0: An Initial Step towards a Vision-Language Foundation
+                      Model for Autonomous Driving</a></div>
+                  <div class="author"><u><b>Xin Zhou</b></u>, Zongchuang Zhao, Zhibo Yang, Mingsheng Li, Humen Zhong,
+                    Shuai Bai, Du Chu, Ruizhe Chen, Zhaohai Li, Jun Tang, Qiuyue Wang, Mingkun Yang, Jiazhao Zhang,
+                    Dayiheng Liu, Dingkang Liang, Xiang Bai</div>
+                  <div class="links">
+                    <a href="https://arxiv.org/pdf/2609.00111" class="btn btn-sm z-depth-0" role="button" target="_blank"
+                      rel="noopener noreferrer" style="font-size:12px;"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/QwenLM/Qwen-Drive-1.0/tree/main" class="btn btn-sm z-depth-0"
+                      role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                        class="fab fa-github"></i> Code</a>
+                    <a href="https://qwen.ai/blog?id=qwen-drive-1.0" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" rel="noopener noreferrer" style="font-size:12px;">Blog</a>
+                    <a href="https://github.com/QwenLM/Qwen-Drive-1.0/stargazers" class="btn btn-sm z-depth-0"
+                      role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                        class="fas fa-star"></i> Star <span class="star-count"
+                        data-repo="QwenLM/Qwen-Drive-1.0">383</span></a>
+                  </div>
+                  <div class="pub-summary">A <b>vision-language foundation model for autonomous driving</b> that unifies
+                    3D perception, driving VQA, and motion planning.</div>
                 </div>
               </div>
-            </div>
-          </li>
+            </li>
 
-          <li>
-            <div class="pub-row">
-              <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-                <img src="./assets/img/DAPT.png" class="teaser img-fluid z-depth-1" style="width:100%;height:auto;" />
-                <abbr class="badge">CVPR'24</abbr>
-              </div>
-              <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-                <div class="title"><a
-                    href="https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_Dynamic_Adapter_Meets_Prompt_Tuning_Parameter-Efficient_Transfer_Learning_for_Point_CVPR_2024_paper.html"
-                    target="_blank" rel="noopener noreferrer">Dynamic Adapter Meets Prompt Tuning: Parameter-Efficient
-                    Transfer Learning for Point Cloud Analysis</a></div>
-                <div class="author"><u><b>Xin Zhou</u>*</b>, Dingkang Liang*, Wei Xu, Xingkui Zhu, Yihan Xu,
-                  Zhikang Zou, Xiang Bai</div>
-                <div class="links">
-                  <a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_Dynamic_Adapter_Meets_Prompt_Tuning_Parameter-Efficient_Transfer_Learning_for_Point_CVPR_2024_paper.pdf"
-                    class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;"><i
-                      class="fas fa-file-pdf"></i> PDF</a>
-                  <a href="https://github.com/LMD0311/DAPT" class="btn btn-sm z-depth-0" role="button" target="_blank"
-                    style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
-                  <a href="./assets/slide/cvpr24-DAPT.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank"
-                    style="font-size:12px;">Slide</a>
-                  <a href="https://zhuanlan.zhihu.com/p/686850575" class="btn btn-sm z-depth-0" role="button"
-                    target="_blank" style="font-size:12px;">Blog <i class='fab fa-zhihu'></i></a>
-                  <a href="https://github.com/LMD0311/DAPT/stargazers" class="btn btn-sm z-depth-0" role="button"
-                    target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i class="fas fa-star"></i> Star
-                    <span class="star-count" data-repo="LMD0311/DAPT">171</span></a>
-
+            <li>
+              <div class="pub-row">
+                <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+                  <img src="./assets/img/HERMES++.png" class="teaser img-fluid z-depth-1" style="width:100%;height:auto;"
+                    alt="HERMES++ framework for scene generation and understanding" />
+                  <abbr class="badge">TPAMI'26/ICCV'25</abbr>
                 </div>
-                <div class="pub-summary">Introduce Dynamic Adapter with prompt tuning in point PEFT.</div>
-              </div>
-            </div>
-          </li>
-
-          <li>
-            <div class="pub-row">
-              <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-                <img src="./assets/img/pointmamba.png" class="teaser img-fluid z-depth-1"
-                  style="width:100%;height:auto;" />
-                <abbr class="badge">NeurIPS'24</abbr>
-              </div>
-              <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-                <div class="title"><a href="https://arxiv.org/abs/2402.10739" target="_blank"
-                    rel="noopener noreferrer">PointMamba: A Simple State Space Model for Point Cloud Analysis</a></div>
-                <div class="author">Dingkang Liang*, <u><b>Xin Zhou</u>*</b>, Wei Xu, Xingkui Zhu, Zhikang
-                  Zou, Xiaoqing Ye, Xiao Tan, Xiang Bai</div>
-                <div class="links">
-
-                  <a href="https://arxiv.org/pdf/2402.10739.pdf" class="btn btn-sm z-depth-0" role="button"
-                    target="_blank" style="font-size:12px;"><i class="fas fa-file-pdf"></i> PDF</a>
-                  <a href="https://lmd0311.github.io/projects/PointMamba/" class="btn btn-sm z-depth-0" role="button"
-                    target="_blank" style="font-size:12px;"><i class="fas fa-home"></i> Project</a>
-                  <a href="https://github.com/LMD0311/PointMamba" class="btn btn-sm z-depth-0" role="button"
-                    target="_blank" style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
-                  <a href="https://zhuanlan.zhihu.com/p/687191399" class="btn btn-sm z-depth-0" role="button"
-                    target="_blank" style="font-size:12px;">Blog <i class='fab fa-zhihu'></i></a>
-                  <a href="https://github.com/LMD0311/PointMamba/stargazers" class="btn btn-sm z-depth-0" role="button"
-                    target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i class="fas fa-star"></i> Star
-                    <span class="star-count" data-repo="LMD0311/PointMamba">548</span></a>
+                <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+                  <div class="title"><a href="https://arxiv.org/abs/2604.28196" target="_blank"
+                      rel="noopener noreferrer">HERMES++: Toward a Unified Driving World Model for 3D Scene
+                      Understanding and Generation</a></div>
+                  <div class="publication-version"><span class="version-label">ICCV 2025 version</span>
+                    <a href="https://arxiv.org/abs/2501.14729" target="_blank" rel="noopener noreferrer">HERMES: A
+                      Unified Self-Driving World Model for Simultaneous 3D Scene Understanding and Generation</a>
+                  </div>
+                  <div class="author"><u><b>Xin Zhou</b></u>, Dingkang Liang, Sifan Tu, Xiwu Chen, Yikang
+                    Ding, Dingyuan Zhang, Feiyang Tan, Hengshuang Zhao, Xiang Bai</div>
+                  <div class="links">
+                    <a href="https://arxiv.org/pdf/2604.28196" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                        class="fas fa-file-pdf"></i> TPAMI PDF</a>
+                    <a href="https://arxiv.org/pdf/2501.14729" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                        class="fas fa-file-pdf"></i> ICCV PDF</a>
+                    <a href="https://github.com/H-EmbodVis/HERMESV2" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
+                    <a href="https://h-embodvis.github.io/HERMESV2/" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" style="font-size:12px;"><i class="fas fa-home"></i> Project</a>
+                    <a href="https://github.com/LMD0311/HERMES" class="btn btn-sm z-depth-0 star-multi" role="button"
+                      target="_blank" rel="noopener noreferrer" style="font-size:12px;"
+                      title="GitHub stars: ICCV version (LMD0311/HERMES) + TPAMI version (H-EmbodVis/HERMESV2)"><i
+                        class="fas fa-star"></i> <span class="star-count"
+                        data-repo="LMD0311/HERMES">263</span><span class="star-plus">+</span><span class="star-count"
+                        data-repo="H-EmbodVis/HERMESV2">71</span></a>
+                  </div>
+                  <div class="pub-summary">A <b>unified</b> driving world model enabling joint multi-view understanding
+                    and future lidar generation.</div>
                 </div>
-                <div class="pub-summary">A simple state space model tailored for point cloud analysis.</div>
               </div>
-            </div>
-          </li>
+            </li>
+          </ol>
 
-        </ol>
+          <ul class="pub-mini-list">
+            <li class="pub-mini">
+              <span class="pub-mini-badge">arXiv'26</span>
+              <a class="pub-mini-title" href="https://arxiv.org/abs/2605.30280" target="_blank"
+                rel="noopener noreferrer">Qwen-VLA: Unifying Vision-Language-Action Modeling Across Tasks,
+                Environments, and Robot Embodiments</a>
+              <span class="pub-mini-desc">A unified vision-language-action model spanning tasks, environments, and
+                robot embodiments.</span>
+            </li>
+                        <li class="pub-mini">
+              <span class="pub-mini-badge">TIP'26</span>
+              <a class="pub-mini-title" href="https://arxiv.org/abs/2505.08725" target="_blank"
+                rel="noopener noreferrer">Extending Large Vision-Language Model for Diverse Interactive Tasks in
+                Autonomous Driving</a>
+              <span class="pub-mini-authors">Zongchuang Zhao, Haoyu Fu, Dingkang Liang, <u><b>Xin Zhou</b></u>, Dingyuan Zhang, Hongwei Xie, Bing Wang,
+                Xiang Bai</span>
+              <span class="pub-mini-desc">Extends a large VLM from perception-level QA to diverse interactive driving
+                tasks.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pub-group" id="pub-generation">
+          <h3 class="pub-group-title"><i class="fas fa-magic" aria-hidden="true"></i> Generative World Model</h3>
+          <p class="pub-group-desc">Driving and general-purpose world models, world action models, and efficient
+            video generation.</p>
+
+          <ol class="bibliography">
+            <li>
+              <div class="pub-row">
+                <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+                  <img src="./assets/img/EasyCache.png" class="teaser img-fluid z-depth-1"
+                    style="width:100%;height:auto;"
+                    alt="EasyCache qualitative comparison against video diffusion caching baselines" />
+                  <abbr class="badge">arXiv'25</abbr>
+                </div>
+                <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+                  <div class="title"><a href="https://arxiv.org/abs/2507.02860" target="_blank"
+                      rel="noopener noreferrer">Less is Enough: Training-Free Video Diffusion Acceleration via
+                      Runtime-Adaptive Caching</a></div>
+                  <div class="author"><u><b>Xin Zhou</b></u>, Dingkang Liang, Kaijin Chen, Tianrui Feng, Xiwu Chen,
+                    Hongkai Lin, Yikang Ding, Feiyang Tan, Hengshuang Zhao, Xiang Bai</div>
+                  <div class="links">
+                    <a href="https://arxiv.org/pdf/2507.02860" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                        class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://h-embodvis.github.io/EasyCache/" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                        class="fas fa-home"></i> Project</a>
+                    <a href="https://github.com/H-EmbodVis/EasyCache" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                        class="fab fa-github"></i> Code</a>
+                    <a href="https://github.com/H-EmbodVis/EasyCache/stargazers" class="btn btn-sm z-depth-0"
+                      role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                        class="fas fa-star"></i> Star <span class="star-count"
+                        data-repo="H-EmbodVis/EasyCache">299</span></a>
+                  </div>
+                  <div class="pub-summary">A <b>training-free</b> runtime-adaptive caching scheme that accelerates video
+                    diffusion; officially integrated into ComfyUI, plug-and-play for the Wan series, MiniMax H3,
+                    and more.</div>
+                </div>
+              </div>
+            </li>
+          </ol>
+
+          <ul class="pub-mini-list">
+            <li class="pub-mini">
+              <span class="pub-mini-badge">arXiv'26</span>
+              <a class="pub-mini-title" href="https://arxiv.org/abs/2608.07468" target="_blank"
+                rel="noopener noreferrer">SimWAM: A Simple World Action Model for End-to-End Autonomous Driving</a>
+              <span class="pub-mini-authors">Zongchuang Zhao, <u><b>Xin Zhou</b></u>, Tianyang Xu, Zhengyang Sun, Kaixuan Zhou, Yu Wu, Honglin Li,
+                Dingkang Liang, Xiang Bai</span>
+              <span class="pub-mini-desc">A simple world action model for end-to-end autonomous driving.</span>
+            </li>
+            <li class="pub-mini">
+              <span class="pub-mini-badge">ECCV'26</span>
+              <a class="pub-mini-title" href="https://arxiv.org/abs/2605.01896" target="_blank"
+                rel="noopener noreferrer">Divide and Conquer: Decoupled Representation Alignment for Multimodal World
+                Models</a>
+              <span class="pub-mini-authors">Junyuan Xiao, Dingkang Liang, <u><b>Xin Zhou</b></u>, Yixuan Ye, Tongtong Su, Guangmo Yi, Bin Xia, Qiang Lyu,
+                Shurui Shi, Jun Huang, Jianlou Si, Wenming Yang</span>
+              <span class="pub-mini-desc">Decoupled representation alignment for multimodal world models.</span>
+            </li>
+            <li class="pub-mini">
+              <span class="pub-mini-badge">CVPR'26</span>
+              <a class="pub-mini-title" href="https://arxiv.org/abs/2604.08546" target="_blank"
+                rel="noopener noreferrer">When Numbers Speak: Aligning Textual Numerals and Visual Instances in
+                Text-to-Video Diffusion Models</a>
+              <span class="pub-mini-authors">Zhengyang Sun, Yu Chen, <u><b>Xin Zhou</b></u>, Xiaofan Li, Xiwu Chen, Dingkang Liang, Xiang Bai</span>
+              <span class="pub-mini-desc">Aligns textual numerals with visual instances in text-to-video
+                diffusion.</span>
+            </li>
+            <li class="pub-mini">
+              <span class="pub-mini-badge">arXiv'26</span>
+              <a class="pub-mini-title" href="https://arxiv.org/abs/2603.25716" target="_blank"
+                rel="noopener noreferrer">Out of Sight but Not Out of Mind: Hybrid Memory for Dynamic Video World
+                Models</a>
+              <span class="pub-mini-authors">Kaijin Chen, Dingkang Liang, <u><b>Xin Zhou</b></u>, Yikang Ding,
+                Xiaoqiang Liu, Pengfei Wan, Xiang Bai</span>
+              <span class="pub-mini-desc">A hybrid memory mechanism for dynamic video world models.</span>
+            </li>
+            <li class="pub-mini">
+              <span class="pub-mini-badge">ICRA'26</span>
+              <a class="pub-mini-title" href="https://arxiv.org/abs/2503.13587" target="_blank"
+                rel="noopener noreferrer">UniFuture: A 4D Driving World Model for Future Generation and
+                Perception</a>
+              <span class="pub-mini-authors">Dingkang Liang, Dingyuan Zhang, <u><b>Xin Zhou</b></u>, Sifan Tu, Tianrui Feng, Xiaofan Li, Yumeng Zhang,
+                Mingyang Du, Xiao Tan, Xiang Bai</span>
+              <span class="pub-mini-desc">A unified driving world model for future generation and future
+                perception.</span>
+            </li>
+            <li class="pub-mini">
+              <span class="pub-mini-badge">FCS'26</span>
+              <div class="pub-mini-head">
+                <a class="pub-mini-title" href="https://arxiv.org/abs/2502.10498" target="_blank"
+                  rel="noopener noreferrer">The Role of World Models in Shaping Autonomous Driving: A Comprehensive
+                  Survey</a>
+                <span class="pub-mini-tag">Survey</span>
+              </div>
+              <span class="pub-mini-authors">Sifan Tu, <u><b>Xin Zhou</b></u>, Dingkang Liang, Xingyu Jiang, Yumeng
+                Zhang, Xiaofan Li, Xiang Bai</span>
+              <div class="links pub-mini-links">
+                <a href="https://github.com/LMD0311/Awesome-World-Model" class="btn btn-sm z-depth-0" role="button"
+                  target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i class="fab fa-github"></i>
+                  Collection</a>
+                <a href="https://github.com/LMD0311/Awesome-World-Model/stargazers" class="btn btn-sm z-depth-0"
+                  role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                    class="fas fa-star"></i> Star <span class="star-count"
+                    data-repo="LMD0311/Awesome-World-Model">2,256</span></a>
+              </div>
+              <span class="pub-mini-desc">A comprehensive survey of world models for autonomous driving.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pub-group" id="pub-3d">
+          <h3 class="pub-group-title"><i class="fas fa-cube" aria-hidden="true"></i> 3D Perception</h3>
+          <p class="pub-group-desc">Point cloud and 3D scene understanding.</p>
+
+          <ol class="bibliography">
+            <li>
+              <div class="pub-row">
+                <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+                  <img src="./assets/img/PointGST.jpg" class="teaser img-fluid z-depth-1"
+                    style="width:100%;height:auto;" />
+                  <abbr class="badge">TPAMI'25</abbr>
+                </div>
+                <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+                  <div class="title"><a href="https://arxiv.org/abs/2410.08114" target="_blank"
+                      rel="noopener noreferrer">Parameter-Efficient Fine-Tuning in Spectral Domain for Point Cloud
+                      Learning</a></div>
+                  <div class="author">Dingkang Liang*, Tianrui Feng*, <u><b>Xin Zhou*</b></u>, Yumeng Zhang,
+                    Zhikang Zou, Xiang Bai</div>
+                  <div class="links">
+                    <a href="https://arxiv.org/abs/2410.08114" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" style="font-size:12px;"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/jerryfeng2003/PointGST" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
+                    <a href="https://github.com/jerryfeng2003/PointGST/stargazers" class="btn btn-sm z-depth-0"
+                      role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                        class="fas fa-star"></i> Star <span class="star-count"
+                        data-repo="jerryfeng2003/PointGST">389</span></a>
+                  </div>
+                  <div class="pub-summary">A <b>spectral domain perspective</b> for point PEFT, very strong
+                    performance.</div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="pub-row">
+                <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+                  <img src="./assets/img/DAPT.png" class="teaser img-fluid z-depth-1" style="width:100%;height:auto;" />
+                  <abbr class="badge">CVPR'24</abbr>
+                </div>
+                <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+                  <div class="title"><a
+                      href="https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_Dynamic_Adapter_Meets_Prompt_Tuning_Parameter-Efficient_Transfer_Learning_for_Point_CVPR_2024_paper.html"
+                      target="_blank" rel="noopener noreferrer">Dynamic Adapter Meets Prompt Tuning:
+                      Parameter-Efficient Transfer Learning for Point Cloud Analysis</a></div>
+                  <div class="author"><u><b>Xin Zhou</b></u>*, Dingkang Liang*, Wei Xu, Xingkui Zhu, Yihan Xu,
+                    Zhikang Zou, Xiang Bai</div>
+                  <div class="links">
+                    <a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_Dynamic_Adapter_Meets_Prompt_Tuning_Parameter-Efficient_Transfer_Learning_for_Point_CVPR_2024_paper.pdf"
+                      class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;"><i
+                        class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/LMD0311/DAPT" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
+                    <a href="./assets/slide/cvpr24-DAPT.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank"
+                      style="font-size:12px;">Slide</a>
+                    <a href="https://zhuanlan.zhihu.com/p/686850575" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" style="font-size:12px;">Blog <i class='fab fa-zhihu'></i></a>
+                    <a href="https://github.com/LMD0311/DAPT/stargazers" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i class="fas fa-star"></i> Star
+                      <span class="star-count" data-repo="LMD0311/DAPT">171</span></a>
+                  </div>
+                  <div class="pub-summary">Introduce Dynamic Adapter with prompt tuning in point PEFT.</div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="pub-row">
+                <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+                  <img src="./assets/img/pointmamba.png" class="teaser img-fluid z-depth-1"
+                    style="width:100%;height:auto;" />
+                  <abbr class="badge">NeurIPS'24</abbr>
+                </div>
+                <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+                  <div class="title"><a href="https://arxiv.org/abs/2402.10739" target="_blank"
+                      rel="noopener noreferrer">PointMamba: A Simple State Space Model for Point Cloud Analysis</a>
+                  </div>
+                  <div class="author">Dingkang Liang*, <u><b>Xin Zhou</b></u>*, Wei Xu, Xingkui Zhu, Zhikang
+                    Zou, Xiaoqing Ye, Xiao Tan, Xiang Bai</div>
+                  <div class="links">
+                    <a href="https://arxiv.org/pdf/2402.10739.pdf" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" style="font-size:12px;"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://lmd0311.github.io/projects/PointMamba/" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" style="font-size:12px;"><i class="fas fa-home"></i> Project</a>
+                    <a href="https://github.com/LMD0311/PointMamba" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" style="font-size:12px;"><i class="fab fa-github"></i> Code</a>
+                    <a href="https://zhuanlan.zhihu.com/p/687191399" class="btn btn-sm z-depth-0" role="button"
+                      target="_blank" style="font-size:12px;">Blog <i class='fab fa-zhihu'></i></a>
+                    <a href="https://github.com/LMD0311/PointMamba/stargazers" class="btn btn-sm z-depth-0"
+                      role="button" target="_blank" rel="noopener noreferrer" style="font-size:12px;"><i
+                        class="fas fa-star"></i> Star <span class="star-count"
+                        data-repo="LMD0311/PointMamba">548</span></a>
+                  </div>
+                  <div class="pub-summary">A simple state space model tailored for point cloud analysis.</div>
+                </div>
+              </div>
+            </li>
+          </ol>
+
+          <ul class="pub-mini-list">
+            <li class="pub-mini">
+              <span class="pub-mini-badge">CVPR'26</span>
+              <a class="pub-mini-title" href="https://arxiv.org/abs/2604.04933" target="_blank"
+                rel="noopener noreferrer">PointTPA: Dynamic Network Parameter Adaptation for 3D Scene
+                Understanding</a>
+              <span class="pub-mini-authors">Siyuan Liu, Chaoqun Zheng, <u><b>Xin Zhou</b></u>, Tianrui Feng, Dingkang Liang, Xiang Bai</span>
+              <span class="pub-mini-desc">Dynamic test-time parameter adaptation for 3D scene understanding.</span>
+            </li>
+            <li class="pub-mini">
+              <span class="pub-mini-badge">NeurIPS'24</span>
+              <a class="pub-mini-title" href="https://arxiv.org/abs/2407.03263" target="_blank"
+                rel="noopener noreferrer">A Unified Framework for 3D Scene Understanding</a>
+              <span class="pub-mini-authors">Wei Xu, Chunsheng Shi, Sifan Tu, <u><b>Xin Zhou</b></u>, Dingkang Liang, Xiang Bai</span>
+              <span class="pub-mini-desc">A unified framework for multi-task 3D scene understanding.</span>
+            </li>
+            <li class="pub-mini">
+              <span class="pub-mini-badge">PRCV'23</span>
+              <a class="pub-mini-title" href="https://doi.org/10.1007/978-981-99-8432-9_3" target="_blank"
+                rel="noopener noreferrer">Diffusion-based 3D Object Detection with Random Boxes</a>
+              <span class="pub-mini-authors"><u><b>Xin Zhou</b></u>, Jinghua Hou, Tingting Yao, Dingkang Liang, Zhe Liu, Zhikang Zou, Xiaoqing Ye,
+                Jianwei Cheng, Xiang Bai</span>
+              <span class="pub-mini-desc">Diffusion-based 3D object detection trained with randomly sampled
+                boxes.</span>
+            </li>
+          </ul>
+        </div>
+
       </div>
 
       <h2 id="experience">Selected Experience</h2>
@@ -476,7 +667,7 @@
       if (reduced) return;
 
       if ('IntersectionObserver' in window) {
-        var targets = document.querySelectorAll('.pub-row, .news-scroll, section > ul');
+        var targets = document.querySelectorAll('.pub-row, .pub-mini-list, .news-scroll, section > ul');
         var pubs = document.querySelectorAll('.publications .pub-row');
         Array.prototype.forEach.call(pubs, function (el, i) {
           el.style.setProperty('--md-reveal-delay', Math.min(i, 3) * 70 + 'ms');

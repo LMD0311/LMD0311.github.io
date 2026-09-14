@@ -163,3 +163,95 @@ blockquote { background: var(--global-bg-color); border-left: 2px solid var(--gl
 }
 
 /* Homepage colors (titles, authors, buttons, badges) are token-driven in theme.css. */
+
+/* Research-direction groups: heading, description, expanded cards, compact entries. */
+.publications .pub-group { margin-bottom: 34px; }
+.publications .pub-group:last-child { margin-bottom: 0; }
+.publications .pub-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
+.publications .pub-group-title i { font-size: 13px; }
+.publications .pub-group-desc {
+  margin: 0 0 16px;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* Compact entries for co-authored work: badge + linked title + one-line summary. */
+.publications .pub-mini-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.publications .pub-mini {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 3px 10px;
+  min-height: 0;
+  margin: 0;
+  padding: 11px 14px;
+  border: 1px solid var(--theme-border);
+  border-radius: var(--theme-radius-md);
+  box-shadow: var(--theme-elevation-1);
+  transition: border-color var(--theme-duration-short) var(--theme-ease-standard),
+    box-shadow var(--theme-duration-medium) var(--theme-ease-standard);
+}
+.publications .pub-mini:hover { border-color: var(--theme-primary); box-shadow: var(--theme-elevation-2); }
+.publications .pub-mini-badge {
+  grid-row: 1;
+  align-self: center;
+  padding: 3px 9px;
+  border-radius: var(--theme-radius-full);
+  font: 500 11px/1.4 Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  letter-spacing: .4px;
+  white-space: nowrap;
+}
+.publications .pub-mini-title {
+  grid-row: 1;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -.01em;
+}
+.publications .pub-mini-desc {
+  grid-column: 2;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.publications .pub-mini-authors {
+  grid-column: 2;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.publications .pub-mini-head {
+  grid-row: 1;
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.publications .pub-mini-tag {
+  padding: 2px 8px;
+  border: 1px solid var(--theme-primary);
+  border-radius: var(--theme-radius-full);
+  font: 500 10.5px/1.4 Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  letter-spacing: .4px;
+  white-space: nowrap;
+}
+.publications .pub-mini-links { grid-column: 2; display: flex; flex-wrap: wrap; gap: 7px; margin-top: 2px; }
+@media screen and (max-width: 640px) {
+  .publications .pub-group { margin-bottom: 28px; }
+  .publications .pub-mini { gap: 4px 8px; padding: 10px 12px; }
+  .publications .pub-mini-title { font-size: 13.5px; }
+}
