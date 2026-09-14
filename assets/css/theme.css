@@ -33,6 +33,7 @@
   /* Motion (M3 easing curves and durations) */
   --theme-ease-standard: cubic-bezier(.2, 0, 0, 1);
   --theme-ease-emphasized: cubic-bezier(.05, .7, .1, 1);
+  --theme-ease-emphasized-accelerate: cubic-bezier(.3, 0, .8, .15);
   --theme-duration-short: 150ms;
   --theme-duration-medium: 300ms;
   --theme-duration-long: 500ms;

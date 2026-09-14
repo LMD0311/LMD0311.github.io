@@ -262,7 +262,7 @@ section ul { line-height: 1.65; }
   border-bottom: 1px solid #dbe5ee;
   transform: translateX(-50%) rotate(45deg);
 }
-.wechat-link:hover .wechat-tooltip, .wechat-link:focus .wechat-tooltip {
+.wechat-link:hover .wechat-tooltip, .wechat-link:focus-visible .wechat-tooltip {
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, 0);
@@ -586,10 +586,14 @@ html[data-theme="dark"] .material-home .theme-toggle .md-icon-moon { opacity: 0;
 .material-home #back-to-top.hidden { bottom: -60px; opacity: 0; pointer-events: none; }
 .material-home .md-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px; }
 .material-home .md-modal[hidden] { display: none; }
-.material-home .md-modal-scrim { position: absolute; inset: 0; background: rgba(10, 10, 9, .44); opacity: 0; transition: opacity var(--theme-duration-medium) var(--theme-ease-standard); }
-.material-home .md-modal.md-open .md-modal-scrim { opacity: 1; }
-.material-home .md-modal-card { position: relative; width: min(340px, 100%); padding: 30px 24px 24px; border-radius: 28px; text-align: center; opacity: 0; transform: scale(.92) translateY(12px); transition: opacity var(--theme-duration-medium) var(--theme-ease-emphasized), transform var(--theme-duration-medium) var(--theme-ease-emphasized); }
-.material-home .md-modal.md-open .md-modal-card { opacity: 1; transform: none; }
+.material-home .md-modal-scrim { position: absolute; inset: 0; background: rgba(10, 10, 9, .44); opacity: 0; transition: opacity var(--theme-duration-short) var(--theme-ease-emphasized-accelerate); }
+.material-home .md-modal.md-open .md-modal-scrim { opacity: 1; transition: opacity var(--theme-duration-medium) var(--theme-ease-standard); }
+.material-home .md-modal-card { position: relative; width: min(340px, 100%); padding: 30px 24px 24px; border-radius: 28px; text-align: center; opacity: 0; transform: scale(.92) translateY(12px); transition: opacity var(--theme-duration-short) var(--theme-ease-emphasized-accelerate), transform var(--theme-duration-short) var(--theme-ease-emphasized-accelerate); }
+.material-home .md-modal.md-open .md-modal-card { opacity: 1; transform: none; transition: opacity var(--theme-duration-medium) var(--theme-ease-emphasized), transform var(--theme-duration-medium) var(--theme-ease-emphasized); }
+.material-home .md-modal-card h3, .material-home .md-modal-card p, .material-home .md-modal-card img { opacity: 0; transform: translateY(10px); transition: opacity var(--theme-duration-short) var(--theme-ease-emphasized-accelerate), transform var(--theme-duration-short) var(--theme-ease-emphasized-accelerate); }
+.material-home .md-modal.md-open .md-modal-card h3, .material-home .md-modal.md-open .md-modal-card p, .material-home .md-modal.md-open .md-modal-card img { opacity: 1; transform: none; transition: opacity var(--theme-duration-medium) var(--theme-ease-emphasized), transform var(--theme-duration-medium) var(--theme-ease-emphasized); }
+.material-home .md-modal.md-open .md-modal-card p { transition-delay: 60ms; }
+.material-home .md-modal.md-open .md-modal-card img { transition-delay: 120ms; }
 .material-home .md-modal-card h3 { margin: 0 0 6px; color: var(--md-on-surface); font-size: 20px; font-weight: 600; }
 .material-home .md-modal-card p { margin: 0 0 16px; color: var(--md-muted); font-size: 13px; line-height: 1.55; }
 .material-home .md-modal-card img { display: block; width: 100%; max-width: 260px; margin: 0 auto; border-radius: var(--theme-radius-md); }
