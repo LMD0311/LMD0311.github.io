@@ -31,7 +31,7 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 
 
-  <link rel="stylesheet" href="./assets/css/style.css?v=20260915">
+  <link rel="stylesheet" href="./assets/css/style.css?v=20260916">
   <link rel="stylesheet" href="./assets/css/publications.css?v=20260915">
   <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/hust-inf.css?v=20260915">
   <link rel="stylesheet" href="./assets/css/theme.css?v=20260915">
@@ -134,6 +134,12 @@
     <section>
 
       <h2 id="about-me">About Me</h2>
+      <svg class="about-atom" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <circle cx="32" cy="32" r="23" />
+        <ellipse cx="32" cy="32" rx="10" ry="23" transform="rotate(60 32 32)" />
+        <ellipse cx="32" cy="32" rx="10" ry="23" transform="rotate(-60 32 32)" />
+        <circle class="atom-electron" cx="51" cy="19" r="3.5" />
+      </svg>
       <p>I am a second-year Ph.D. student at Huazhong University of Science and Technology, under the supervision of
         Prof. <a href="https://scholar.google.com/citations?user=UeltiQ4AAAAJ&hl=en">Xiang Bai</a>. My research
         interests mainly lie in 3D vision, especially in 3D understanding and generative models.
@@ -591,19 +597,26 @@
   <script>
     (function () {
       var button = document.getElementById('theme-toggle');
-      var saved = localStorage.getItem('theme');
+      var saved;
+      try { saved = localStorage.getItem('theme'); } catch (e) { /* Storage may be disabled. */ }
       if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      var systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+      function isDark() {
+        var theme = document.documentElement.dataset.theme;
+        return theme ? theme === 'dark' : systemTheme.matches;
+      }
       function update() {
-        var dark = document.documentElement.dataset.theme === 'dark';
+        var dark = isDark();
         button.setAttribute('aria-pressed', String(dark));
         button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
         button.querySelector('span').textContent = dark ? 'Light mode' : 'Dark mode';
       }
       update();
+      systemTheme.addEventListener('change', update);
       button.addEventListener('click', function () {
-        var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        var next = isDark() ? 'light' : 'dark';
         document.documentElement.dataset.theme = next;
-        localStorage.setItem('theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) { /* Keep the in-page choice. */ }
         update();
       });
     }());
@@ -691,6 +704,7 @@
 
       var RIPPLE_HOSTS = '.material-home .publications .links a.btn, .material-home .theme-toggle, .material-home .profile-nav a, .material-home .social-icons a:not(.wechat-link)';
       document.addEventListener('pointerdown', function (e) {
+        if (e.button !== 0 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         var host = e.target instanceof Element ? e.target.closest(RIPPLE_HOSTS) : null;
         if (!host) return;
         var rect = host.getBoundingClientRect();
@@ -702,6 +716,7 @@
         ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
         host.appendChild(ripple);
         ripple.addEventListener('animationend', function () { ripple.remove(); });
+        window.setTimeout(function () { ripple.remove(); }, 700);
       });
     }());
   </script>
