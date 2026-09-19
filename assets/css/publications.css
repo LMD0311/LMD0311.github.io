@@ -168,17 +168,21 @@ blockquote { background: var(--global-bg-color); border-left: 2px solid var(--gl
 .publications .pub-group { margin-bottom: 34px; }
 .publications .pub-group:last-child { margin-bottom: 0; }
 .publications .pub-group-title {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 0 0 4px;
+  margin: 0 0 4px -10px;
+  padding: 6px 14px 6px 10px;
+  border-radius: var(--theme-radius-full);
+  transition: background var(--theme-duration-short) var(--theme-ease-standard);
   font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   font-size: 17px;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -.01em;
 }
-.publications .pub-group-title i { font-size: 13px; }
+.publications .pub-group-title i { font-size: 13px; transition: transform var(--theme-duration-medium) var(--theme-ease-spring); }
+.publications .pub-group-title:hover i { transform: rotate(-12deg) scale(1.18); }
 .publications .pub-group-desc {
   margin: 0 0 16px;
   font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;

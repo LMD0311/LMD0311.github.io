@@ -20,6 +20,13 @@
   <link rel="icon" media="(prefers-color-scheme:light)" href="./assets/img/Head.png" type="image/png" />
   <script src="./assets/js/favicon-switcher.js" type="application/javascript"></script>
 
+  <script>
+    // Restore the saved palette before the first paint; animate only later changes.
+    try {
+      var savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') document.documentElement.dataset.theme = savedTheme;
+    } catch (e) { /* The system palette works without storage. */ }
+  </script>
   <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css
     integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
   <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css
@@ -31,10 +38,10 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 
 
-  <link rel="stylesheet" href="./assets/css/style.css?v=20260916">
-  <link rel="stylesheet" href="./assets/css/publications.css?v=20260915">
-  <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/hust-inf.css?v=20260915">
-  <link rel="stylesheet" href="./assets/css/theme.css?v=20260915">
+  <link rel="stylesheet" href="./assets/css/style.css?v=20260920b">
+  <link rel="stylesheet" href="./assets/css/publications.css?v=20260919">
+  <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/hust-inf.css?v=20260919">
+  <link rel="stylesheet" href="./assets/css/theme.css?v=20260920">
 
   <!-- if you are using this template, please change the Baidu/Google Analytics ID below -->
   <script>
@@ -68,7 +75,8 @@
   <script>addBackToTop({
       backgroundColor: '#fff',
       innerHTML: '<i class="fas fa-arrow-up" aria-hidden="true"></i><span class="sr-only">Back to Top</span>',
-      textColor: '#333'
+      textColor: '#333',
+      scrollDuration: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 400
     })
   </script>
 
@@ -100,7 +108,7 @@
           <i class="fas fa-envelope"></i>
         </a>
         <a class="wechat-link" style="margin: 0 2px 0 0" href="assets/img/wechat.jpg" target="_blank"
-          rel="noopener noreferrer" aria-label="WeChat contact information">
+          rel="noopener noreferrer" aria-label="WeChat contact information" aria-haspopup="dialog" aria-controls="wechat-modal" aria-expanded="false">
           <i class="fab fa-weixin"></i>
           <span class="wechat-tooltip">申请好友时请说明来意<br><em>Please introduce yourself when adding me</em><br>欢迎任何形式的学术交流<br><em>Academic discussion is always welcome</em></span>
         </a>
@@ -118,7 +126,7 @@
         <a href="#about-me">About</a>
         <a href="#news">News</a>
         <div class="nav-group">
-          <a href="#publications">Publications</a>
+          <a href="#publications">Publications<i class="fas fa-chevron-down nav-caret" aria-hidden="true"></i></a>
           <div class="nav-sub">
             <div class="nav-sub-inner">
               <a href="#pub-vla">Vision(-Language)(-Action)</a>
@@ -149,6 +157,7 @@
         world models, and world action models (WAM) for autonomous driving and embodied AI.</p>
 
       <div class="section-heading"><h2 id="news">News</h2><span class="section-hint">Scroll for earlier updates</span></div>
+      <div class="news-frame">
       <div class="news-scroll" role="region" aria-labelledby="news" tabindex="0">
       <ul>
         <li><strong>[Sep. 2026]</strong> Our work <a href="https://github.com/QwenLM/Qwen-Drive-1.0/tree/main"
@@ -186,6 +195,7 @@
         </li>
         <li><strong>[Aug. 2023]</strong> One paper is accepted to <b>PRCV 2023</b>.</li>
       </ul>
+      </div>
       </div>
       <div class="section-heading"><h2 id="publications">Selected Publications</h2><a class="full-list"
           href="https://scholar.google.com/citations?user=SWU7N_sAAAAJ&hl=en" target="_blank"
@@ -582,42 +592,72 @@
     <i class="fas fa-sun md-icon md-icon-sun" aria-hidden="true"></i>
     <span class="sr-only">Dark mode</span>
   </button>
-  <div class="md-modal" id="wechat-modal" role="dialog" aria-modal="true" aria-labelledby="wechat-modal-title" hidden>
+  <div class="md-modal" id="wechat-modal" role="dialog" aria-modal="true" aria-labelledby="wechat-modal-title" aria-describedby="wechat-modal-description" hidden>
     <div class="md-modal-scrim" data-md-modal-close></div>
     <div class="md-modal-card">
       <button type="button" class="md-modal-close" data-md-modal-close aria-label="Close dialog">
         <i class="fas fa-times" aria-hidden="true"></i>
       </button>
       <h3 id="wechat-modal-title">WeChat</h3>
-      <p>扫码添加微信，申请好友时请说明来意<br>Scan to add me on WeChat — please introduce yourself</p>
-      <img src="./assets/img/wechat.jpg" alt="WeChat QR code" />
+      <p id="wechat-modal-description">扫码添加微信，申请好友时请说明来意<br>Scan to add me on WeChat — please introduce yourself</p>
+      <img src="./assets/img/wechat.jpg" alt="WeChat QR code" width="942" height="1055" />
     </div>
   </div>
   <script src="/assets/js/scale.fix.js"></script>
   <script>
     (function () {
+      var root = document.documentElement;
       var button = document.getElementById('theme-toggle');
-      var saved;
-      try { saved = localStorage.getItem('theme'); } catch (e) { /* Storage may be disabled. */ }
-      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
       var systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var fadeTimer;
+      var colors = ['primary', 'primary-hover', 'primary-soft', 'on-primary', 'primary-container',
+        'on-primary-container', 'background', 'surface', 'surface-container', 'text', 'text-secondary',
+        'text-muted', 'border', 'button-text', 'button-background', 'button-hover'];
+      var registered = !!(window.CSS && CSS.registerProperty);
+      if (registered) {
+        var initial = getComputedStyle(root);
+        colors.forEach(function (name) {
+          try {
+            CSS.registerProperty({ name: '--theme-' + name, syntax: '<color>', inherits: true,
+              initialValue: initial.getPropertyValue('--theme-' + name).trim() });
+          } catch (e) { registered = false; }
+        });
+        root.style.setProperty('--theme-color-properties', colors.map(function (name) { return '--theme-' + name; }).join(', '));
+      }
       function isDark() {
-        var theme = document.documentElement.dataset.theme;
+        var theme = root.dataset.theme;
         return theme ? theme === 'dark' : systemTheme.matches;
       }
       function update() {
         var dark = isDark();
         button.setAttribute('aria-pressed', String(dark));
         button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-        button.querySelector('span').textContent = dark ? 'Light mode' : 'Dark mode';
+        button.querySelector('.sr-only').textContent = dark ? 'Light mode' : 'Dark mode';
+      }
+      function endFade() {
+        root.classList.remove('theme-fade', 'theme-fade-fallback');
+        root.style.colorScheme = isDark() ? 'dark' : 'light';
       }
       update();
-      systemTheme.addEventListener('change', update);
+      endFade();
+      systemTheme.addEventListener('change', function () { update(); endFade(); });
+      reducedMotion.addEventListener('change', function () {
+        if (reducedMotion.matches) { clearTimeout(fadeTimer); endFade(); }
+      });
       button.addEventListener('click', function () {
         var next = isDark() ? 'light' : 'dark';
-        document.documentElement.dataset.theme = next;
+        clearTimeout(fadeTimer);
+        if (!reducedMotion.matches) {
+          root.classList.add(registered ? 'theme-fade' : 'theme-fade-fallback');
+          // Commit transition rules before changing their color targets.
+          getComputedStyle(root).getPropertyValue('--theme-background');
+        }
+        root.dataset.theme = next;
         try { localStorage.setItem('theme', next); } catch (e) { /* Keep the in-page choice. */ }
         update();
+        if (reducedMotion.matches) endFade();
+        else fadeTimer = window.setTimeout(endFade, 800);
       });
     }());
   </script>
@@ -627,26 +667,156 @@
       var modal = document.getElementById('wechat-modal');
       if (!trigger || !modal) return;
       var closeBtn = modal.querySelector('.md-modal-close');
-      var lastFocus = null;
+      var card = modal.querySelector('.md-modal-card');
+      var scrim = modal.querySelector('.md-modal-scrim');
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var animation = null;
+      var state = 'closed';
+      var lastFocus, oldOverflow, background = [];
+      var dx = 0, dy = 0, sx = .1, sy = .1;
+      function geometry() {
+        var icon = trigger.getBoundingClientRect();
+        var bounds = card.getBoundingClientRect();
+        dx = icon.left + icon.width / 2 - (bounds.left + bounds.width / 2);
+        dy = icon.top + icon.height / 2 - (bounds.top + bounds.height / 2);
+        sx = icon.width / bounds.width;
+        sy = icon.height / bounds.height;
+      }
+      function shape(x, y, w, h) { return 'translate(' + x + 'px,' + y + 'px) scale(' + w + ',' + h + ')'; }
+      function snapshot() {
+        var style = getComputedStyle(card);
+        return { transform: style.transform, opacity: style.opacity, borderRadius: style.borderRadius };
+      }
+      function play(frames, duration, easing, done) {
+        if (animation) animation.cancel();
+        animation = null;
+        if (reduced.matches || !card.animate) { done(); return; }
+        animation = card.animate(frames, { duration: duration, easing: easing, fill: 'both' });
+        var current = animation;
+        current.onfinish = function () {
+          if (animation !== current) return;
+          done();
+          current.cancel();
+          animation = null;
+        };
+      }
+      function finishClose() {
+        modal.hidden = true;
+        trigger.setAttribute('aria-expanded', 'false');
+        modal.classList.remove('md-open', 'md-closing', 'md-anchor-left');
+        modal.style.removeProperty('--md-modal-left');
+        modal.style.removeProperty('--md-modal-top');
+        scrim.style.removeProperty('transition-duration');
+        document.documentElement.style.overflow = oldOverflow;
+        background.forEach(function (item) { item.element.inert = item.inert; });
+        background = [];
+        state = 'closed';
+        if (lastFocus && lastFocus.isConnected) lastFocus.focus({ preventScroll: true });
+      }
       function open() {
+        if (state !== 'closed') return;
         lastFocus = document.activeElement;
+        oldOverflow = document.documentElement.style.overflow;
+        trigger.setAttribute('aria-expanded', 'true');
         modal.hidden = false;
-        requestAnimationFrame(function () { modal.classList.add('md-open'); });
         document.documentElement.style.overflow = 'hidden';
-        closeBtn.focus();
+        // Establish the hidden scrim/content state before starting their transitions.
+        getComputedStyle(card).opacity;
+        // On desktop the profile column is fixed on the left, so keep the dialog
+        // beside the icon instead of relocating it to the viewport center.
+        if (window.matchMedia('(min-width: 961px)').matches) {
+          var iconBounds = trigger.getBoundingClientRect();
+          var cardBounds = card.getBoundingClientRect();
+          var left = Math.min(Math.max(24, iconBounds.right + 16), window.innerWidth - cardBounds.width - 24);
+          var top = Math.min(Math.max(24, iconBounds.top + (iconBounds.height - cardBounds.height) / 2), window.innerHeight - cardBounds.height - 24);
+          modal.style.setProperty('--md-modal-left', left + 'px');
+          modal.style.setProperty('--md-modal-top', top + 'px');
+          modal.classList.add('md-anchor-left');
+        }
+        modal.classList.add('md-open');
+        geometry();
+        background = Array.prototype.map.call(document.querySelectorAll('.wrapper, .theme-toggle, #back-to-top, .skip-link'), function (element) {
+          var item = { element: element, inert: element.inert };
+          element.inert = true;
+          return item;
+        });
+        state = 'opening';
+        closeBtn.focus({ preventScroll: true });
+        play([
+          { transform: shape(dx, dy, sx, sy), opacity: 0, borderRadius: '50%' },
+          { transform: shape(dx * .08, dy * .1, .88, 1.025), opacity: 1, borderRadius: '34px', offset: .62 },
+          { transform: shape(0, 0, 1, 1), opacity: 1, borderRadius: '28px' }
+        ], 680, 'cubic-bezier(.2, 0, 0, 1)', function () { state = 'open'; });
+      }
+      function reverseOpening() {
+        var current = animation;
+        if (!current) return false;
+        var currentTime = Number(current.currentTime) || 0;
+        if (currentTime <= 1) {
+          current.cancel();
+          animation = null;
+          finishClose();
+          return true;
+        }
+        // The reverse distance is the animation time already travelled.
+        scrim.style.setProperty('transition-duration', Math.max(80, Math.round(currentTime)) + 'ms');
+        state = 'closing';
+        modal.classList.remove('md-open');
+        modal.classList.add('md-closing');
+        current.onfinish = function () {
+          if (animation !== current) return;
+          finishClose();
+          current.cancel();
+          animation = null;
+        };
+        try {
+          // Reversing the live WAAPI timeline preserves the current shape and
+          // its velocity, like an interrupted Android shared-element motion.
+          current.reverse();
+          return true;
+        } catch (e) {
+          current.cancel();
+          animation = null;
+          return false;
+        }
       }
       function close() {
+        if (state === 'closed' || state === 'closing') return;
+        if (state === 'opening' && reverseOpening()) return;
+        var start = snapshot();
+        // If Escape interrupts entry, continue from the exact currently visible shape.
+        if (state === 'open') geometry();
+        state = 'closing';
+        scrim.style.setProperty('transition-duration', '420ms');
         modal.classList.remove('md-open');
-        document.documentElement.style.overflow = '';
-        window.setTimeout(function () { modal.hidden = true; }, 220);
-        if (lastFocus && lastFocus.focus) lastFocus.focus();
+        modal.classList.add('md-closing');
+        play([start,
+          { transform: shape(dx * .16, dy * .12, .7, .94), opacity: .9, borderRadius: '34px', offset: .38 },
+          { transform: shape(dx, dy, sx, sy), opacity: 0, borderRadius: '50%' }
+        ], 420, 'cubic-bezier(.3, 0, .8, .15)', finishClose);
       }
-      trigger.addEventListener('click', function (e) { e.preventDefault(); open(); });
+      trigger.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault(); open();
+      });
+      modal.addEventListener('pointerdown', function (e) {
+        // Start the interruption on touch/mouse-down instead of waiting for click.
+        if (e.target === scrim) close();
+      });
       modal.addEventListener('click', function (e) {
         if (e.target instanceof Element && e.target.closest('[data-md-modal-close]')) close();
       });
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && !modal.hidden) close();
+        if (state === 'closed') return;
+        if (e.key === 'Escape') { e.preventDefault(); close(); }
+        // The close button is currently the dialog's only keyboard control.
+        if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus({ preventScroll: true }); }
+      });
+      reduced.addEventListener('change', function () {
+        if (!reduced.matches || !animation) return;
+        animation.cancel(); animation = null;
+        if (state === 'closing') finishClose();
+        else state = 'open';
       });
     }());
   </script>
@@ -654,7 +824,15 @@
     (function () {
       var btt = document.getElementById('back-to-top');
       if (!btt) return;
+      btt.setAttribute('role', 'button');
+      btt.setAttribute('aria-label', 'Back to top');
+      btt.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); btt.click(); }
+      });
       function sync() {
+        // The scroll helper replaces className when its visibility changes.
+        if (!btt.classList.contains('md-feedback')) btt.classList.add('md-feedback');
+        btt.tabIndex = btt.classList.contains('hidden') ? -1 : 0;
         document.body.classList.toggle('fab-collapsed', btt.classList.contains('hidden'));
       }
       new MutationObserver(sync).observe(btt, { attributes: true, attributeFilter: ['class'] });
@@ -677,10 +855,8 @@
   <script>
     (function () {
       var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduced) return;
-
-      if ('IntersectionObserver' in window) {
-        var targets = document.querySelectorAll('.pub-row, .pub-mini-list, .news-scroll, section > ul');
+      if (!reduced && 'IntersectionObserver' in window) {
+        var targets = document.querySelectorAll('.pub-row, .pub-mini-list, .pub-group-title, .news-scroll, section > ul');
         var pubs = document.querySelectorAll('.publications .pub-row');
         Array.prototype.forEach.call(pubs, function (el, i) {
           el.style.setProperty('--md-reveal-delay', Math.min(i, 3) * 70 + 'ms');
@@ -702,22 +878,77 @@
         Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
       }
 
-      var RIPPLE_HOSTS = '.material-home .publications .links a.btn, .material-home .theme-toggle, .material-home .profile-nav a, .material-home .social-icons a:not(.wechat-link)';
-      document.addEventListener('pointerdown', function (e) {
-        if (e.button !== 0 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        var host = e.target instanceof Element ? e.target.closest(RIPPLE_HOSTS) : null;
-        if (!host) return;
+      var FEEDBACK_HOSTS = '.material-home button, .material-home a.btn, .material-home #back-to-top, .material-home .profile-nav a, .material-home .social-icons a, .material-home .full-list';
+      var pressed = new Set();
+      var releaseTimers = new WeakMap();
+      document.querySelectorAll(FEEDBACK_HOSTS).forEach(function (host) { host.classList.add('md-feedback'); });
+      function feedback(host, x, y) {
+        clearTimeout(releaseTimers.get(host));
+        host.classList.add('md-pressed');
+        pressed.add(host);
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         var rect = host.getBoundingClientRect();
-        var size = Math.max(rect.width, rect.height);
+        var size = Math.hypot(rect.width, rect.height) * 2;
+        var clip = document.createElement('span');
+        clip.className = 'md-ripple-clip';
+        clip.setAttribute('aria-hidden', 'true');
         var ripple = document.createElement('span');
         ripple.className = 'md-ripple';
         ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-        ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-        host.appendChild(ripple);
-        ripple.addEventListener('animationend', function () { ripple.remove(); });
-        window.setTimeout(function () { ripple.remove(); }, 700);
+        ripple.style.left = ((x == null ? rect.width / 2 : x - rect.left) - size / 2) + 'px';
+        ripple.style.top = ((y == null ? rect.height / 2 : y - rect.top) - size / 2) + 'px';
+        clip.appendChild(ripple);
+        host.appendChild(clip);
+        window.setTimeout(function () { clip.remove(); }, 650);
+      }
+      function release() {
+        pressed.forEach(function (host) {
+          releaseTimers.set(host, window.setTimeout(function () { host.classList.remove('md-pressed'); }, 120));
+        });
+        pressed.clear();
+      }
+      document.addEventListener('pointerdown', function (e) {
+        if (e.button !== 0 || !(e.target instanceof Element)) return;
+        var host = e.target.closest(FEEDBACK_HOSTS);
+        if (host) feedback(host, e.clientX, e.clientY);
       });
+      document.addEventListener('pointerup', release);
+      document.addEventListener('pointercancel', release);
+      window.addEventListener('blur', release);
+      document.addEventListener('keydown', function (e) {
+        if (e.repeat || !(e.target instanceof Element)) return;
+        var host = e.target.closest(FEEDBACK_HOSTS);
+        if (!host || (e.key !== 'Enter' && e.key !== ' ')) return;
+        if (e.key === ' ' && host.tagName === 'A' && host.getAttribute('role') !== 'button') return;
+        feedback(host);
+        if (e.key === ' ' && host.tagName === 'A') { e.preventDefault(); host.click(); }
+      });
+      document.addEventListener('keyup', release);
+      document.addEventListener('click', function (e) {
+        if (e.detail !== 0 || !(e.target instanceof Element)) return;
+        var host = e.target.closest(FEEDBACK_HOSTS);
+        if (host && !host.classList.contains('md-pressed')) feedback(host);
+        release();
+      });
+
+      var nav = document.querySelector('.profile-nav');
+      var navGroup = nav && nav.querySelector('.nav-group');
+      if (nav && navGroup) {
+        navGroup.addEventListener('mouseenter', function () { nav.classList.add('nav-open'); });
+        nav.addEventListener('mouseleave', function () { nav.classList.remove('nav-open'); });
+      }
+
+      var newsScroll = document.querySelector('.news-scroll');
+      var newsFrame = newsScroll && newsScroll.closest('.news-frame');
+      if (newsScroll && newsFrame) {
+        var syncNewsFades = function () {
+          newsFrame.classList.toggle('at-top', newsScroll.scrollTop < 4);
+          newsFrame.classList.toggle('at-bottom', newsScroll.scrollTop + newsScroll.clientHeight >= newsScroll.scrollHeight - 4);
+        };
+        newsScroll.addEventListener('scroll', syncNewsFades, { passive: true });
+        window.addEventListener('resize', syncNewsFades);
+        syncNewsFades();
+      }
     }());
   </script>
 

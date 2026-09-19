@@ -34,6 +34,7 @@
   --theme-ease-standard: cubic-bezier(.2, 0, 0, 1);
   --theme-ease-emphasized: cubic-bezier(.05, .7, .1, 1);
   --theme-ease-emphasized-accelerate: cubic-bezier(.3, 0, .8, .15);
+  --theme-ease-spring: cubic-bezier(.2, 1.15, .35, 1);
   --theme-duration-short: 150ms;
   --theme-duration-medium: 300ms;
   --theme-duration-long: 500ms;
@@ -162,6 +163,7 @@ html[data-theme="dark"] {
 .material-home .pub-row .abbr .badge { background: var(--theme-primary) !important; color: var(--theme-on-primary) !important; }
 .material-home .pub-row .abbr img.teaser { background: var(--theme-surface) !important; }
 .material-home .pub-group-title { color: var(--theme-text) !important; }
+.material-home .pub-group-title:hover { background: var(--theme-primary-soft); }
 .material-home .pub-group-title i { color: var(--theme-primary) !important; }
 .material-home .pub-group-desc { color: var(--theme-text-secondary) !important; }
 .material-home .pub-mini { background: var(--theme-surface) !important; border-color: var(--theme-border) !important; }
