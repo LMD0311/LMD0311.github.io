@@ -91,7 +91,7 @@ blockquote { background: var(--global-bg-color); border-left: 2px solid var(--gl
   .pub-row .author{line-height:1.35 !important; word-break:break-word;}
 }
 
-/* Consistent image frames and compact, readable publication cards. */
+/* Keep figures at their natural ratio so diagrams stay complete and legible. */
 .publications .pub-row {
   display: grid !important;
   grid-template-columns: minmax(180px, 30%) minmax(0, 1fr);
@@ -113,7 +113,7 @@ blockquote { background: var(--global-bg-color); border-left: 2px solid var(--gl
   width: 100% !important;
   height: auto !important;
   max-height: none;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: auto;
   object-fit: contain;
   background: var(--theme-surface, #fff);
   border-radius: var(--theme-radius-md, 12px);
@@ -157,9 +157,15 @@ blockquote { background: var(--global-bg-color); border-left: 2px solid var(--gl
   box-shadow: none;
   color: var(--theme-text-secondary, #586474);
 }
+.publications .pub-row-easycache .pub-summary > span { display: block; }
+.publications .pub-row-easycache .pub-summary strong { font-weight: 700; }
+@media screen and (min-width: 641px) {
+  .publications .pub-row-easycache .teaser-focus { align-self: center !important; }
+}
 @media screen and (max-width: 640px) {
   .publications .pub-row { grid-template-columns: minmax(0, 1fr); gap: 15px; padding: 16px; }
-  .publications .pub-row .col-sm-3.abbr { max-width: 340px; margin: 0 auto !important; }
+  .publications .pub-row .col-sm-3.abbr { max-width: none; margin: 0 auto !important; }
+  .publications .pub-row-easycache .teaser-focus { align-self: start !important; }
 }
 
 /* Homepage colors (titles, authors, buttons, badges) are token-driven in theme.css. */

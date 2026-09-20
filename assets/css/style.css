@@ -746,6 +746,17 @@ html { scrollbar-gutter: stable; }
 .material-home .publications .links a.btn.btn-sm { border-radius: var(--theme-radius-full); }
 .material-home .pub-row { border-radius: var(--theme-radius-lg); }
 .material-home .pub-row:hover .abbr img.teaser { transform: none; }
+/* EasyCache's 1200×900 source contains the full comparison in rows 270–645.
+   Remove only the blank vertical margins; retain both panels and their labels. */
+.material-home .pub-row .teaser-focus .teaser-frame {
+  position: relative; overflow: hidden; aspect-ratio: 16 / 5;
+  border-radius: var(--theme-radius-sm);
+}
+.material-home .pub-row .teaser-focus .teaser-frame img.teaser {
+  position: absolute; top: -72%; left: 0;
+  width: 100% !important; height: auto !important;
+  aspect-ratio: auto; max-height: none; border-radius: 0;
+}
 .material-home .pub-row:hover { transform: translateY(-1px); }
 .material-home .theme-toggle:hover, .material-home #back-to-top:hover { transform: translateY(-2px); }
 .material-home .theme-toggle:active, .material-home #back-to-top:active { transform: none; }
