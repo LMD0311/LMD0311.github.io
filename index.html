@@ -38,10 +38,10 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 
 
-  <link rel="stylesheet" href="./assets/css/style.css?v=20260920c">
+  <link rel="stylesheet" href="./assets/css/style.css?v=20260920j">
   <link rel="stylesheet" href="./assets/css/publications.css?v=20260920f">
   <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/hust-inf.css?v=20260919">
-  <link rel="stylesheet" href="./assets/css/theme.css?v=20260920">
+  <link rel="stylesheet" href="./assets/css/theme.css?v=20260920b">
 
   <!-- if you are using this template, please change the Baidu/Google Analytics ID below -->
   <script>
@@ -123,6 +123,7 @@
       <br>
 
       <nav class="profile-nav" aria-label="Page sections">
+        <span class="md-nav-indicator" aria-hidden="true"></span>
         <a href="#about-me">About</a>
         <a href="#news">News</a>
         <div class="nav-group">
@@ -855,6 +856,18 @@
   </script>
   <script>
     (function () {
+      var teaserImages = document.querySelectorAll('.material-home .pub-row img.teaser');
+      Array.prototype.forEach.call(teaserImages, function (img) {
+        var reveal = function () {
+          window.requestAnimationFrame(function () { img.classList.add('md-image-ready'); });
+        };
+        if (img.complete) reveal();
+        else {
+          img.addEventListener('load', reveal, { once: true });
+          img.addEventListener('error', reveal, { once: true });
+        }
+      });
+
       var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!reduced && 'IntersectionObserver' in window) {
         var targets = document.querySelectorAll('.pub-row, .pub-mini-list, .pub-group-title, .news-scroll, section > ul');
@@ -882,9 +895,28 @@
       var FEEDBACK_HOSTS = '.material-home button, .material-home a.btn, .material-home #back-to-top, .material-home .profile-nav a, .material-home .social-icons a, .material-home .full-list';
       var pressed = new Set();
       var releaseTimers = new WeakMap();
+      var rippleClips = new WeakMap();
       document.querySelectorAll(FEEDBACK_HOSTS).forEach(function (host) { host.classList.add('md-feedback'); });
+      function fadeRipple(host) {
+        var clip = rippleClips.get(host);
+        if (!clip || clip.classList.contains('md-ripple-fade')) return;
+        var ripple = clip.querySelector('.md-ripple');
+        if (!ripple) return;
+        var style = getComputedStyle(ripple);
+        ripple.style.transform = style.transform;
+        ripple.style.opacity = style.opacity;
+        ripple.style.animation = 'none';
+        clip.classList.add('md-ripple-fade');
+        window.setTimeout(function () {
+          if (rippleClips.get(host) === clip) {
+            clip.remove();
+            rippleClips.delete(host);
+          }
+        }, 220);
+      }
       function feedback(host, x, y) {
         clearTimeout(releaseTimers.get(host));
+        fadeRipple(host);
         host.classList.add('md-pressed');
         pressed.add(host);
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -900,11 +932,15 @@
         ripple.style.top = ((y == null ? rect.height / 2 : y - rect.top) - size / 2) + 'px';
         clip.appendChild(ripple);
         host.appendChild(clip);
-        window.setTimeout(function () { clip.remove(); }, 650);
+        rippleClips.set(host, clip);
+        window.setTimeout(function () {
+          if (rippleClips.get(host) === clip) fadeRipple(host);
+        }, 650);
       }
       function release() {
         pressed.forEach(function (host) {
           releaseTimers.set(host, window.setTimeout(function () { host.classList.remove('md-pressed'); }, 120));
+          fadeRipple(host);
         });
         pressed.clear();
       }
@@ -934,10 +970,87 @@
 
       var nav = document.querySelector('.profile-nav');
       var navGroup = nav && nav.querySelector('.nav-group');
-      if (nav && navGroup) {
-        navGroup.addEventListener('mouseenter', function () { nav.classList.add('nav-open'); });
-        nav.addEventListener('mouseleave', function () { nav.classList.remove('nav-open'); });
+      var navIndicator = nav && nav.querySelector('.md-nav-indicator');
+      var navIndicatorFramePending = false;
+      function updateNavIndicator() {
+        navIndicatorFramePending = false;
+        if (!navIndicator || !nav || !window.matchMedia('(min-width: 961px)').matches) {
+          if (navIndicator) navIndicator.style.opacity = '0';
+          return;
+        }
+        var activeLink = nav.querySelector('a[aria-current="location"]');
+        if (!activeLink) { navIndicator.style.opacity = '0'; return; }
+        var navBounds = nav.getBoundingClientRect();
+        var activeBounds = activeLink.getBoundingClientRect();
+        navIndicator.style.setProperty('--md-nav-x', Math.round(activeBounds.left - navBounds.left) + 'px');
+        navIndicator.style.setProperty('--md-nav-y', Math.round(activeBounds.top - navBounds.top) + 'px');
+        navIndicator.style.width = Math.round(activeBounds.width) + 'px';
+        navIndicator.style.height = Math.round(activeBounds.height) + 'px';
+        navIndicator.style.opacity = '1';
       }
+      function scheduleNavIndicator() {
+        if (navIndicatorFramePending) return;
+        navIndicatorFramePending = true;
+        window.requestAnimationFrame(updateNavIndicator);
+      }
+      if (nav && navGroup) {
+        navGroup.addEventListener('mouseenter', function () {
+          nav.classList.add('nav-open');
+          scheduleNavIndicator();
+          window.setTimeout(scheduleNavIndicator, 260);
+        });
+        nav.addEventListener('mouseleave', function () {
+          if (!navGroup.classList.contains('has-active-sub')) nav.classList.remove('nav-open');
+          scheduleNavIndicator();
+          window.setTimeout(scheduleNavIndicator, 260);
+        });
+      }
+
+      // Keep the navigation rail in sync with the section nearest the reading line.
+      var sectionLinks = nav ? Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]')) : [];
+      var sectionItems = sectionLinks.map(function (link) {
+        var id = link.getAttribute('href').slice(1);
+        return { link: link, target: document.getElementById(id) };
+      }).filter(function (item) { return item.target; });
+      var navFramePending = false;
+      function syncSectionNav() {
+        navFramePending = false;
+        if (!sectionItems.length) return;
+        var marker = window.scrollY + Math.min(144, window.innerHeight * .24);
+        var active = sectionItems[0];
+        sectionItems.forEach(function (item) {
+          if (item.target.getBoundingClientRect().top + window.scrollY <= marker) active = item;
+        });
+        // Bottom sections cannot always scroll all the way up to the reading line.
+        // When their hash target is visible, prefer the section the user selected.
+        var hash = window.location.hash.slice(1);
+        var hashItem = sectionItems.filter(function (item) {
+          return item.target.id === hash;
+        })[0];
+        if (hashItem) {
+          var hashBounds = hashItem.target.getBoundingClientRect();
+          if (hashBounds.bottom > 0 && hashBounds.top < window.innerHeight) active = hashItem;
+        }
+        sectionItems.forEach(function (item) {
+          if (item.link === active.link) item.link.setAttribute('aria-current', 'location');
+          else item.link.removeAttribute('aria-current');
+        });
+        if (navGroup) {
+          var isPublication = active.link.closest('.nav-group') === navGroup;
+          navGroup.classList.toggle('is-active', isPublication);
+          navGroup.classList.toggle('has-active-sub', isPublication && active.link !== navGroup.querySelector(':scope > a'));
+        }
+        scheduleNavIndicator();
+      }
+      function scheduleSectionNav() {
+        if (navFramePending) return;
+        navFramePending = true;
+        window.requestAnimationFrame(syncSectionNav);
+      }
+      window.addEventListener('scroll', scheduleSectionNav, { passive: true });
+      window.addEventListener('resize', function () { scheduleSectionNav(); scheduleNavIndicator(); });
+      window.addEventListener('hashchange', scheduleSectionNav);
+      scheduleSectionNav();
 
       var newsScroll = document.querySelector('.news-scroll');
       var newsFrame = newsScroll && newsScroll.closest('.news-frame');

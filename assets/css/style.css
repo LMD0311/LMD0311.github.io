@@ -503,6 +503,9 @@ section p > img[alt="HUST"] { margin-top: 10px !important; }
   --md-surface: var(--theme-surface);
   --md-background: var(--theme-background);
   --md-outline: var(--theme-border);
+  --md-state-hover-opacity: .08;
+  --md-state-focus-opacity: .12;
+  --md-state-pressed-opacity: .12;
   background: var(--md-background);
   color: var(--md-on-surface);
   overflow-x: hidden;
@@ -537,6 +540,35 @@ section p > img[alt="HUST"] { margin-top: 10px !important; }
     width: 240px;
   }
   .material-home section { grid-column: 2; min-width: 0; }
+  .material-home .profile-nav a[aria-current="location"],
+  .material-home .profile-nav .nav-group.is-active > a {
+    color: var(--md-primary);
+    background: transparent;
+    box-shadow: none;
+  }
+  .material-home .profile-nav .nav-sub a[aria-current="location"] { font-weight: 600; }
+  .material-home .profile-nav { position: relative; }
+  .material-home .profile-nav .md-nav-indicator {
+    position: absolute;
+    display: block;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    border-radius: var(--theme-radius-full);
+    background: var(--md-primary-soft);
+    box-shadow: inset 3px 0 0 var(--md-primary);
+    transform: translate3d(var(--md-nav-x, 0px), var(--md-nav-y, 0px), 0);
+    transition: transform 220ms var(--theme-ease-emphasized),
+      width 220ms var(--theme-ease-emphasized), height 220ms var(--theme-ease-emphasized),
+      opacity 120ms var(--theme-ease-standard);
+  }
+  .material-home .profile-nav > a,
+  .material-home .profile-nav .nav-group > a,
+  .material-home .profile-nav .nav-sub a { z-index: 1; }
 }
 .material-home header .image.avatar img {
   width: 112px; padding: 0; aspect-ratio: 1; object-fit: cover;
@@ -577,21 +609,58 @@ html.theme-fade-fallback .news-scroll {
   transition: background-color 600ms var(--theme-ease-standard), color 600ms var(--theme-ease-standard), border-color 600ms var(--theme-ease-standard);
 }
 .material-home .profile-nav { display: flex; flex-direction: column; gap: 2px; margin-top: 25px; }
+.material-home .profile-nav .md-nav-indicator { display: none; }
+@media screen and (min-width: 961px) {
+  .material-home .profile-nav .md-nav-indicator { display: block; }
+}
 .material-home .profile-nav a { position: relative; overflow: hidden; padding: 9px 16px; border-radius: var(--theme-radius-full); color: var(--md-muted); font-size: 13px; font-weight: 500; letter-spacing: .2px; transition: color var(--theme-duration-short) var(--theme-ease-standard), background var(--theme-duration-short) var(--theme-ease-standard); }
 .material-home .profile-nav a:hover, .material-home .profile-nav a:focus-visible { color: var(--md-primary); background: var(--md-primary-soft); text-decoration: none; }
 /* Publications nav item expands its research-direction sub-links on hover/focus (M3 drawer motion). */
 .material-home .profile-nav .nav-group { display: flex; flex-direction: column; gap: 2px; }
 .material-home .profile-nav .nav-caret { position: absolute; top: 50%; right: 14px; margin-top: -5px; font-size: 10px; line-height: 10px; opacity: .5; transition: transform var(--theme-duration-medium) var(--theme-ease-emphasized), opacity var(--theme-duration-short) var(--theme-ease-standard); }
 .material-home .profile-nav.nav-open .nav-caret,
+.material-home .profile-nav .nav-group.has-active-sub .nav-caret,
 .material-home .profile-nav .nav-group:hover .nav-caret,
 .material-home .profile-nav .nav-group:focus-within .nav-caret { transform: rotate(180deg); opacity: .85; }
 .material-home .profile-nav .nav-sub { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows var(--theme-duration-short) var(--theme-ease-emphasized-accelerate), opacity var(--theme-duration-short) var(--theme-ease-standard); }
 .material-home .profile-nav .nav-sub-inner { display: flex; flex-direction: column; gap: 2px; overflow: hidden; min-height: 0; }
 .material-home .profile-nav.nav-open .nav-sub,
+.material-home .profile-nav .nav-group.has-active-sub .nav-sub,
 .material-home .profile-nav .nav-group:hover .nav-sub,
 .material-home .profile-nav .nav-group:focus-within .nav-sub { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows var(--theme-duration-medium) var(--theme-ease-emphasized), opacity var(--theme-duration-medium) var(--theme-ease-standard); }
 .material-home .profile-nav .nav-sub a { padding: 6px 16px 6px 32px; font-size: 12px; }
 .material-home .profile-nav .nav-sub a::before { content: ""; position: absolute; left: 19px; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: currentColor; opacity: .55; }
+@media screen and (min-width: 961px) {
+  /* Keep the research directions visibly nested under Publications. */
+  .material-home .profile-nav .nav-sub-inner {
+    margin: 3px 0 4px 12px;
+    padding-left: 8px;
+    border-left: 1px solid var(--theme-border);
+  }
+  .material-home .profile-nav .nav-sub a {
+    padding: 7px 12px 7px 18px;
+    border-radius: var(--theme-radius-md);
+    color: var(--theme-text-muted) !important;
+    font-size: 12px;
+    letter-spacing: .1px;
+  }
+  .material-home .profile-nav .nav-sub a::before { left: 7px; opacity: .65; }
+  .material-home .profile-nav .nav-group.is-active > a {
+    background: transparent;
+    box-shadow: none;
+  }
+  .material-home .profile-nav .nav-sub a:hover,
+  .material-home .profile-nav .nav-sub a:focus-visible,
+  .material-home .profile-nav .nav-sub a[aria-current="location"] {
+    color: var(--theme-primary) !important;
+    background: var(--theme-primary-soft);
+  }
+  .material-home .profile-nav .nav-sub a[aria-current="location"] {
+    background: transparent;
+    box-shadow: none;
+    font-weight: 600;
+  }
+}
 .material-home .pub-group[id] { scroll-margin-top: 44px; }
 .material-home section { width: auto; float: none; padding: 48px 0 70px; animation: md-fade-up var(--theme-duration-long) .06s var(--theme-ease-emphasized) both; }
 .material-home section > h2 { margin: 34px 0 12px; color: var(--md-on-surface); font-size: 22px; font-weight: 600; }
@@ -727,7 +796,12 @@ html { scrollbar-gutter: stable; }
   opacity: .14;
   transform: scale(0);
   pointer-events: none;
+  will-change: transform, opacity;
   animation: md-ripple var(--theme-duration-long) var(--theme-ease-emphasized) forwards;
+}
+.material-home .md-ripple-clip.md-ripple-fade .md-ripple {
+  opacity: 0 !important;
+  transition: opacity 180ms var(--theme-ease-standard);
 }
 @keyframes md-ripple { to { transform: scale(1); opacity: 0; } }
 
@@ -757,7 +831,12 @@ html { scrollbar-gutter: stable; }
   width: 100% !important; height: auto !important;
   aspect-ratio: auto; max-height: none; border-radius: 0;
 }
-.material-home .pub-row:hover { transform: translateY(-1px); }
+.material-home .pub-row .abbr img.teaser {
+  opacity: 0;
+  transition: opacity var(--theme-duration-medium) var(--theme-ease-standard);
+}
+.material-home .pub-row .abbr img.teaser.md-image-ready { opacity: 1; }
+.material-home .pub-row:hover { transform: none; }
 .material-home .theme-toggle:hover, .material-home #back-to-top:hover { transform: translateY(-2px); }
 .material-home .theme-toggle:active, .material-home #back-to-top:active { transform: none; }
 /* Shared M3 state feedback, including keyboard activation and the WeChat icon. */
@@ -774,9 +853,9 @@ html { scrollbar-gutter: stable; }
   background: currentColor; opacity: 0; pointer-events: none;
   transition: opacity 150ms var(--theme-ease-standard);
 }
-@media (hover: hover) { .material-home .md-feedback:hover::after { opacity: .08; } }
-.material-home .md-feedback:focus-visible::after,
-.material-home .md-feedback.md-pressed::after { opacity: .12; }
+@media (hover: hover) { .material-home .md-feedback:hover::after { opacity: var(--md-state-hover-opacity); } }
+.material-home .md-feedback:focus-visible::after { opacity: var(--md-state-focus-opacity); }
+.material-home .md-feedback.md-pressed::after { opacity: var(--md-state-pressed-opacity); }
 .material-home .md-feedback.md-pressed { scale: .96; }
 .material-home .md-ripple-clip { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; pointer-events: none; }
 .material-home .social-icons a.wechat-link { isolation: isolate; }
@@ -810,6 +889,41 @@ html { scrollbar-gutter: stable; }
 @media (hover: none) {
   .material-home .pub-row:hover, .material-home .btn:hover,
   .material-home .social-icons a:hover { transform: none; }
+}
+
+/* Touch targets stay visually compact while meeting a comfortable mobile hit area. */
+@media screen and (max-width: 640px) {
+  .material-home .social-icons a { width: 44px; height: 44px; line-height: 44px; }
+  .material-home .publications .links a.btn.btn-sm {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Hover state layers belong to pointer devices; touch keeps the pressed state only. */
+@media (hover: none) {
+  .material-home .social-icons a:hover:not(:focus-visible):not(.md-pressed) {
+    color: var(--md-primary) !important;
+    background: transparent;
+    transform: none;
+  }
+  .material-home .profile-nav > a:hover:not(:focus-visible):not([aria-current="location"]):not(.md-pressed),
+  .material-home .profile-nav .nav-sub a:hover:not(:focus-visible):not([aria-current="location"]):not(.md-pressed) {
+    color: var(--md-muted);
+    background: transparent;
+  }
+  .material-home .btn:hover:not(:focus-visible):not(.md-pressed),
+  .material-home #back-to-top:hover:not(:focus-visible):not(.md-pressed),
+  .material-home .theme-toggle:hover:not(:focus-visible):not(.md-pressed) {
+    transform: none;
+    box-shadow: none;
+  }
+  .material-home .wechat-link:hover:not(:focus-visible):not(.md-pressed)::before {
+    opacity: 0;
+    transform: scale(.72);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
