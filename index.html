@@ -38,10 +38,10 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 
 
-  <link rel="stylesheet" href="./assets/css/style.css?v=20260920j">
-  <link rel="stylesheet" href="./assets/css/publications.css?v=20260920f">
+  <link rel="stylesheet" href="./assets/css/style.css?v=20261003c">
+  <link rel="stylesheet" href="./assets/css/publications.css?v=20261003a">
   <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/hust-inf.css?v=20260919">
-  <link rel="stylesheet" href="./assets/css/theme.css?v=20260920b">
+  <link rel="stylesheet" href="./assets/css/theme.css?v=20261003a">
 
   <!-- if you are using this template, please change the Baidu/Google Analytics ID below -->
   <script>
@@ -199,11 +199,9 @@
       </ul>
       </div>
       </div>
-      <div class="section-heading"><h2 id="publications">Selected Publications</h2><a class="full-list"
+      <div class="section-heading"><h2 id="publications">Selected Publications <span class="publication-note">* Equal contribution</span></h2><a class="full-list"
           href="https://scholar.google.com/citations?user=SWU7N_sAAAAJ&hl=en" target="_blank"
           rel="noopener noreferrer">Full list <span aria-hidden="true">↗</span></a></div>
-
-      <p class="publication-note">* Equal contribution</p>
 
       <div class="publications">
 
@@ -556,14 +554,15 @@
       <h2 id="experience">Selected Experience</h2>
 
       <ul>
+        <li><b>Undergraduate:</b> Huazhong University of Science and Technology (HUST), 2021-2025.</li>
+        <li> HUST Undergraduate Natural Science Innovation Fund Program,
+          (<b>50,000</b>￥, ~6,900 $), 2024-2025. (As the <b>host</b>)</li>
         <li> National Undergraduate Training Projects for Innovation and Entrepreneurship<br>
           - 2023-2024, <b>20,000</b>￥ (~2,750 $). (As the <b>host</b>; Rated <i>Excellent</i>)<br>
           - 2024-2025, <b>10,000</b>￥ (~1,375 $). (As a member; Rated <i>Excellent</i>)
         </li>
         <li> Taihu Lake Innovation Fund for Future Technology (<b>200,000</b>￥, ~27,500 $), 2023-2025. (As a
           student member)</li>
-        <li> HUST Undergraduate Natural Science Innovation Fund Program,
-          (<b>50,000</b>￥, ~6,900 $), 2024-2025. (As the <b>host</b>)</li>
       </ul>
 
 
@@ -579,7 +578,7 @@
         </li>
 
         <li><b>Reviewer Recognition:</b>
-          Outstanding Reviewer, <b>ECCV 2026</b>; Silver Reviewer, <b>ICML 2026</b>; Top Reviewer, <b>NeurIPS 2025</b>
+          Outstanding Reviewer, <b>ECCV 2026</b>; Silver Reviewer, <b>ICML 2026</b>; Excellence in Reviewing Award, <b>Pattern Recognition 2026</b>; Top Reviewer, <b>NeurIPS 2025</b>
         </li>
       </ul>
 
@@ -974,8 +973,11 @@
 
       var nav = document.querySelector('.profile-nav');
       var navGroup = nav && nav.querySelector('.nav-group');
+      var navSub = navGroup && navGroup.querySelector('.nav-sub');
       var navIndicator = nav && nav.querySelector('.md-nav-indicator');
       var navIndicatorFramePending = false;
+      var navMotionFrame = 0;
+      var navMotionUntil = 0;
       function updateNavIndicator() {
         navIndicatorFramePending = false;
         if (!navIndicator || !nav || !window.matchMedia('(min-width: 961px)').matches) {
@@ -997,17 +999,39 @@
         navIndicatorFramePending = true;
         window.requestAnimationFrame(updateNavIndicator);
       }
+      function followNavMotionFrame() {
+        navMotionFrame = 0;
+        var now = window.performance ? window.performance.now() : Date.now();
+        updateNavIndicator();
+        if (now < navMotionUntil) {
+          navMotionFrame = window.requestAnimationFrame(followNavMotionFrame);
+        } else {
+          nav.classList.remove('nav-motion-live');
+          scheduleNavIndicator();
+        }
+      }
+      function followNavMotion(duration) {
+        nav.classList.add('nav-motion-live');
+        navMotionUntil = Math.max(navMotionUntil, (window.performance ? window.performance.now() : Date.now()) + duration);
+        if (!navMotionFrame) navMotionFrame = window.requestAnimationFrame(followNavMotionFrame);
+      }
       if (nav && navGroup) {
         navGroup.addEventListener('mouseenter', function () {
           nav.classList.add('nav-open');
-          scheduleNavIndicator();
-          window.setTimeout(scheduleNavIndicator, 260);
+          followNavMotion(340);
         });
         nav.addEventListener('mouseleave', function () {
           if (!navGroup.classList.contains('has-active-sub')) nav.classList.remove('nav-open');
-          scheduleNavIndicator();
-          window.setTimeout(scheduleNavIndicator, 260);
+          followNavMotion(340);
         });
+        if (navSub) {
+          navSub.addEventListener('transitionrun', function () { followNavMotion(340); });
+          navSub.addEventListener('transitionend', scheduleNavIndicator);
+        }
+        if (window.ResizeObserver) {
+          var navResizeObserver = new ResizeObserver(function () { scheduleNavIndicator(); });
+          navResizeObserver.observe(nav);
+        }
       }
 
       // Keep the navigation rail in sync with the section nearest the reading line.

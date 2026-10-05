@@ -1,5 +1,5 @@
 /*
- * Homepage theme interface — Material Design 3 (teal tonal palette)
+ * Homepage theme interface — Material Design 3 (warm terracotta tonal palette)
  *
  * Change the tokens below to retheme the homepage in one place.
  * The dark-mode button changes html[data-theme], while the system preference
@@ -251,10 +251,16 @@ html[data-theme="dark"] {
 .material-home .news-scroll li:last-child { border-bottom: 0; }
 .material-home .news-scroll li::marker { color: var(--theme-primary); }
 .material-home .pub-row {
-  contain: layout paint;
+  /* Keep layout containment for stable measurement while allowing elevation to breathe. */
+  contain: layout;
 }
 .material-home .pub-row .title a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .material-home .pub-row .title a:hover { text-decoration: underline; }
+.material-home .pub-row:focus-within,
+.material-home .pub-mini:focus-within {
+  border-color: var(--theme-primary-container) !important;
+  box-shadow: var(--theme-elevation-2);
+}
 .material-home .pub-row .author { line-height: 1.65 !important; }
 .material-home .pub-row .links { row-gap: 8px; }
 .material-home .pub-group + .pub-group { padding-top: 8px; border-top: 1px solid var(--theme-border); }
