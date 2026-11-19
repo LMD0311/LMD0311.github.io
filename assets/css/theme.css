@@ -1,12 +1,11 @@
 /*
- * Homepage theme interface — Material Design 3 (warm terracotta tonal palette)
+ * Homepage theme interface — Material Design 3 (warm paper & terracotta palette)
  *
- * Change the tokens below to retheme the homepage in one place.
- * The dark-mode button changes html[data-theme], while the system preference
- * is used automatically when no manual choice has been saved.
+ * Edit the tokens below to retheme the homepage from a single place.
+ * Manual toggling sets html[data-theme]; system preference applies automatically otherwise.
  */
 :root {
-  /* Color roles — warm paper & terracotta (Claude-inspired), mapped to M3 roles */
+  /* Color roles — warm paper & terracotta */
   --theme-primary: #b0522f;
   --theme-primary-hover: #96452a;
   --theme-primary-soft: #f6e3d8;
@@ -25,29 +24,38 @@
   --theme-button-hover: #e7ccba;
   --theme-shadow: rgba(60, 45, 35, .10);
 
-  /* Elevation (M3 levels 1-3) */
+  /* Media softening in dark mode */
+  --theme-teaser-filter: none;
+  --theme-map-opacity: 1;
+
+  /* Elevation (M3 levels 1–3) */
   --theme-elevation-1: 0 1px 2px rgba(20, 19, 17, .06), 0 1px 3px 1px rgba(20, 19, 17, .04);
   --theme-elevation-2: 0 2px 4px rgba(20, 19, 17, .07), 0 3px 8px 2px rgba(20, 19, 17, .06);
   --theme-elevation-3: 0 4px 8px rgba(20, 19, 17, .09), 0 8px 24px 4px rgba(20, 19, 17, .09);
 
-  /* Motion (M3 easing curves and durations) */
+  /* Motion (M3 easing curves & durations) */
   --theme-ease-standard: cubic-bezier(.2, 0, 0, 1);
   --theme-ease-emphasized: cubic-bezier(.05, .7, .1, 1);
   --theme-ease-emphasized-accelerate: cubic-bezier(.3, 0, .8, .15);
   --theme-ease-spring: cubic-bezier(.2, 1.15, .35, 1);
   --theme-duration-short: 150ms;
-  --theme-duration-medium: 300ms;
-  --theme-duration-long: 500ms;
+  --theme-duration-medium: 280ms;
+  --theme-duration-long: 460ms;
 
   /* Shape (M3 shape scale) */
   --theme-radius-sm: 8px;
   --theme-radius-md: 12px;
   --theme-radius-lg: 16px;
   --theme-radius-full: 999px;
+
+  /* State layer opacities */
+  --md-state-hover-opacity: .08;
+  --md-state-focus-opacity: .12;
+  --md-state-pressed-opacity: .12;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --theme-primary: #e08b62;
     --theme-primary-hover: #edaa87;
     --theme-primary-soft: #4a3125;
@@ -65,33 +73,12 @@
     --theme-button-background: #4e3226;
     --theme-button-hover: #5e4032;
     --theme-shadow: rgba(0, 0, 0, .28);
+    --theme-teaser-filter: brightness(.92) contrast(1.03);
+    --theme-map-opacity: .84;
     --theme-elevation-1: 0 1px 2px rgba(0, 0, 0, .30), 0 1px 3px 1px rgba(0, 0, 0, .20);
     --theme-elevation-2: 0 2px 4px rgba(0, 0, 0, .32), 0 3px 8px 2px rgba(0, 0, 0, .24);
     --theme-elevation-3: 0 4px 8px rgba(0, 0, 0, .36), 0 8px 24px 4px rgba(0, 0, 0, .28);
   }
-}
-
-html[data-theme="light"] {
-  --theme-primary: #b0522f;
-  --theme-primary-hover: #96452a;
-  --theme-primary-soft: #f6e3d8;
-  --theme-on-primary: #ffffff;
-  --theme-primary-container: #f4ded2;
-  --theme-on-primary-container: #3b1508;
-  --theme-background: #faf9f5;
-  --theme-surface: #ffffff;
-  --theme-surface-container: #f0eee6;
-  --theme-text: #141413;
-  --theme-text-secondary: #5e5d59;
-  --theme-text-muted: #87867f;
-  --theme-border: #e3e0d7;
-  --theme-button-text: #3b1508;
-  --theme-button-background: #f0dcce;
-  --theme-button-hover: #e7ccba;
-  --theme-shadow: rgba(60, 45, 35, .10);
-  --theme-elevation-1: 0 1px 2px rgba(20, 19, 17, .06), 0 1px 3px 1px rgba(20, 19, 17, .04);
-  --theme-elevation-2: 0 2px 4px rgba(20, 19, 17, .07), 0 3px 8px 2px rgba(20, 19, 17, .06);
-  --theme-elevation-3: 0 4px 8px rgba(20, 19, 17, .09), 0 8px 24px 4px rgba(20, 19, 17, .09);
 }
 
 html[data-theme="dark"] {
@@ -112,175 +99,48 @@ html[data-theme="dark"] {
   --theme-button-background: #4e3226;
   --theme-button-hover: #5e4032;
   --theme-shadow: rgba(0, 0, 0, .28);
+  --theme-teaser-filter: brightness(.92) contrast(1.03);
+  --theme-map-opacity: .84;
   --theme-elevation-1: 0 1px 2px rgba(0, 0, 0, .30), 0 1px 3px 1px rgba(0, 0, 0, .20);
   --theme-elevation-2: 0 2px 4px rgba(0, 0, 0, .32), 0 3px 8px 2px rgba(0, 0, 0, .24);
   --theme-elevation-3: 0 4px 8px rgba(0, 0, 0, .36), 0 8px 24px 4px rgba(0, 0, 0, .28);
 }
 
-.material-home {
-  background: var(--theme-background) !important;
-  color: var(--theme-text) !important;
-}
-.material-home ::selection { background: var(--theme-primary-container); color: var(--theme-on-primary-container); }
-.material-home a { color: var(--theme-primary) !important; }
-.material-home a:hover { color: var(--theme-primary-hover) !important; }
-.material-home section > h2,
-.material-home section > h3,
-.material-home section > h4,
-.material-home .section-heading h2 { color: var(--theme-text) !important; }
-.material-home .news-scroll { background: var(--theme-surface-container) !important; scrollbar-color: var(--theme-border) transparent; }
-.material-home .news-scroll::-webkit-scrollbar-thumb { background: var(--theme-border); border-radius: var(--theme-radius-full); }
-.material-home .news-scroll strong { color: var(--theme-primary) !important; }
-.material-home .star-count { background: var(--theme-primary) !important; color: var(--theme-on-primary) !important; }
-.material-home .news-star i { color: var(--theme-primary) !important; }
-.material-home .social-icons a { color: var(--theme-primary) !important; }
-.material-home .social-icons a:hover,
-.material-home .social-icons a:focus-visible,
-.material-home .profile-nav a:hover,
-.material-home .profile-nav a:focus-visible,
-.material-home .full-list:hover,
-.material-home .full-list:focus-visible { color: var(--theme-primary) !important; background: var(--theme-primary-soft) !important; }
-.material-home .theme-toggle { background: var(--theme-primary-container) !important; color: var(--theme-on-primary-container) !important; box-shadow: var(--theme-elevation-2); }
-.material-home .theme-toggle:hover,
-.material-home .theme-toggle:focus-visible { background: var(--theme-button-hover) !important; color: var(--theme-on-primary-container) !important; box-shadow: var(--theme-elevation-3); }
-.material-home .md-modal-card { background: var(--theme-surface-container) !important; color: var(--theme-text) !important; box-shadow: var(--theme-elevation-3); }
-.material-home .md-modal-card h3 { color: var(--theme-text) !important; }
-.material-home .md-modal-card p { color: var(--theme-text-secondary) !important; }
-.material-home .md-modal-close { color: var(--theme-text-muted) !important; }
-.material-home .md-modal-close:hover,
-.material-home .md-modal-close:focus-visible { color: var(--theme-primary) !important; background: var(--theme-primary-soft) !important; }
-.material-home .pub-row .pub-summary { background: var(--theme-surface-container) !important; border-left-color: var(--theme-primary) !important; }
-.material-home .pub-row .pub-summary b,
-.material-home .pub-row .pub-summary strong { color: var(--theme-primary) !important; }
-.material-home .pub-row { background: var(--theme-surface) !important; border-color: var(--theme-border) !important; box-shadow: var(--theme-elevation-1); }
-.material-home .pub-row:hover { border-color: var(--theme-primary-container) !important; box-shadow: var(--theme-elevation-2); }
-.material-home .pub-row .title a,
-.material-home .pub-row .title a:visited { color: var(--theme-text) !important; }
-.material-home .pub-row .title a:hover { color: var(--theme-primary) !important; }
-.material-home .pub-row .author,
-.material-home .pub-row .pub-summary,
-.material-home .publication-version .version-label { color: var(--theme-text-secondary) !important; }
-.material-home .pub-row .abbr .badge { background: var(--theme-primary) !important; color: var(--theme-on-primary) !important; }
-.material-home .pub-row .abbr img.teaser { background: var(--theme-surface) !important; }
-.material-home .pub-group-title { color: var(--theme-text) !important; }
-.material-home .pub-group-title:hover { background: var(--theme-primary-soft); }
-.material-home .pub-group-title i { color: var(--theme-primary) !important; }
-.material-home .pub-group-desc { color: var(--theme-text-secondary) !important; }
-.material-home .pub-mini { background: var(--theme-surface) !important; border-color: var(--theme-border) !important; }
-.material-home .pub-mini:hover { border-color: var(--theme-primary-container) !important; box-shadow: var(--theme-elevation-1); }
-.material-home .pub-mini-badge { background: var(--theme-primary-container) !important; color: var(--theme-on-primary-container) !important; }
-.material-home .pub-mini-tag { color: var(--theme-primary) !important; border-color: var(--theme-primary) !important; }
-.material-home .pub-mini-title,
-.material-home .pub-mini-title:visited { color: var(--theme-text) !important; }
-.material-home .pub-mini-title:hover { color: var(--theme-primary) !important; }
-.material-home .pub-mini-desc { color: var(--theme-text-secondary) !important; }
-.material-home .pub-mini-authors { color: var(--theme-text-muted) !important; }
-.material-home .pub-mini-authors u { color: var(--theme-text-secondary) !important; }
-
-/* Publication action buttons — M3 filled tonal buttons (m3.material.io spec) */
-.material-home .publications .links a.btn,
-.material-home .publications .links a.btn:visited {
-  color: var(--theme-button-text) !important;
-  background: var(--theme-button-background) !important;
-  border-color: transparent !important;
-}
-.material-home .publications .links a.btn:hover,
-.material-home .publications .links a.btn:focus-visible {
-  color: var(--theme-button-text) !important;
-  background: var(--theme-button-hover) !important;
-}
-.material-home .publications .links a.btn:active { background: var(--theme-button-hover) !important; }
-
-.material-home .wechat-tooltip { color: var(--theme-text-secondary) !important; background: var(--theme-surface) !important; border-color: var(--theme-border) !important; box-shadow: var(--theme-elevation-3) !important; }
-.material-home .wechat-tooltip::after { background: var(--theme-surface) !important; border-color: var(--theme-border) !important; }
-.material-home .skip-link { background: var(--theme-primary) !important; color: var(--theme-on-primary) !important; }
-.material-home #back-to-top { background: var(--theme-primary) !important; color: var(--theme-on-primary) !important; box-shadow: var(--theme-elevation-3); }
-.material-home a:focus-visible,
-.material-home button:focus-visible { outline: 2px solid var(--theme-primary); outline-offset: 2px; }
-
-/* Final M3 polish: clearer hierarchy, steadier reading rhythm, and quieter state changes. */
-.material-home {
-  text-rendering: optimizeLegibility;
-  font-kerning: normal;
-}
-.material-home section > p,
-.material-home section > ul,
-.material-home section > ol { max-width: 72ch; }
-.material-home section > p { margin-bottom: 18px; }
-.material-home section > ul li,
-.material-home section > ol li { line-height: 1.7; }
-.material-home .section-heading h2,
-.material-home section > h2 {
-  letter-spacing: -.025em;
-  line-height: 1.25;
-}
-.material-home .section-heading h2::after,
-.material-home section > h2::after {
-  content: '';
-  display: block;
-  width: 28px;
-  height: 3px;
-  margin-top: 8px;
-  border-radius: var(--theme-radius-full);
-  background: var(--theme-primary);
-  opacity: .72;
-  transform: scaleX(.55);
-  transform-origin: left center;
-  animation: md-heading-line-in 700ms var(--theme-ease-emphasized) both;
-  transition: transform var(--theme-duration-medium) var(--theme-ease-emphasized), opacity var(--theme-duration-short) var(--theme-ease-standard);
-}
-.material-home .section-heading h2:hover::after,
-.material-home section > h2:hover::after { transform: scaleX(1); opacity: 1; }
-@keyframes md-heading-line-in {
-  from { opacity: 0; transform: scaleX(0); }
-  to { opacity: .72; transform: scaleX(.55); }
-}
-.material-home .section-heading { align-items: center; }
-.material-home .section-hint { letter-spacing: .02em; }
-.material-home .news-scroll {
-  border: 1px solid var(--theme-border);
-  background: var(--theme-surface-container);
-  box-shadow: var(--theme-elevation-1);
-  scrollbar-width: thin;
-  scrollbar-color: var(--theme-primary-container) transparent;
-}
-.material-home .news-scroll li {
-  padding: 8px 0 8px 12px;
-  border-bottom: 1px solid color-mix(in srgb, var(--theme-border) 72%, transparent);
-}
-.material-home .news-scroll li:last-child { border-bottom: 0; }
-.material-home .news-scroll li::marker { color: var(--theme-primary); }
-.material-home .pub-row {
-  /* Keep layout containment for stable measurement while allowing elevation to breathe. */
-  contain: layout;
-}
-.material-home .pub-row .title a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.material-home .pub-row .title a:hover { text-decoration: underline; }
-.material-home .pub-row:focus-within,
-.material-home .pub-mini:focus-within {
-  border-color: var(--theme-primary-container) !important;
-  box-shadow: var(--theme-elevation-2);
-}
-.material-home .pub-row .author { line-height: 1.65 !important; }
-.material-home .pub-row .links { row-gap: 8px; }
-.material-home .pub-group + .pub-group { padding-top: 8px; border-top: 1px solid var(--theme-border); }
-.material-home .pub-group-title { letter-spacing: -.015em; }
-
-@media (max-width: 640px) {
-  .material-home section > p,
-  .material-home section > ul,
-  .material-home section > ol { max-width: none; }
-  .material-home section { padding-bottom: 48px; }
-  .material-home .section-heading { margin-top: 28px; }
-  .material-home .news-scroll li { padding-top: 7px; padding-bottom: 7px; }
-  .material-home .pub-row .author { line-height: 1.55 !important; }
+/* Smooth palette cross-fade on manual theme switch */
+html.theme-fade {
+  transition-property: var(--theme-color-properties);
+  transition-duration: 280ms;
+  transition-timing-function: var(--theme-ease-standard);
 }
 
-@supports not (background: color-mix(in srgb, red, transparent)) {
-  .material-home .news-scroll li { border-bottom-color: var(--theme-border); }
+html.theme-fade-fallback body,
+html.theme-fade-fallback .pub-row,
+html.theme-fade-fallback .pub-mini,
+html.theme-fade-fallback .news-scroll,
+html.theme-fade-fallback .info-list {
+  transition: background-color 280ms var(--theme-ease-standard),
+    color 280ms var(--theme-ease-standard),
+    border-color 280ms var(--theme-ease-standard);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .material-home .section-heading h2::after,
-  .material-home section > h2::after { animation: none; transition: none; transform: none; }
+  html.theme-fade,
+  html.theme-fade-fallback body,
+  html.theme-fade-fallback .pub-row,
+  html.theme-fade-fallback .pub-mini,
+  html.theme-fade-fallback .news-scroll,
+  html.theme-fade-fallback .info-list {
+    transition: none !important;
+  }
 }
+
+/* Custom visibility helpers respect both system preference and manual theme */
+lightonly { display: inline; }
+darkonly { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) lightonly { display: none; }
+  :root:not([data-theme="light"]) darkonly { display: inline; }
+}
+html[data-theme="dark"] lightonly { display: none; }
+html[data-theme="dark"] darkonly { display: inline; }
